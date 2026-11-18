@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="start">Pres Start</h1>
+    <button type="button" onclick="Tasbeeh();"> Start</button>
+
+    <script>
+       
+        let counter = document.getElementById("start");
+
+        counter.textContent = "Pres Start";
+
+        function Tasbeeh() {
+            let StartingVar = 0;
+            let setCounter = setInterval (() => {
+                counter.ena
+                StartingVar++;
+                counter.textContent = "Runing..." + StartingVar;
+                
+                if(StartingVar === 5)
+                {
+                    clearInterval(setCounter);
+                    setTimeout(() => {alert("The counter is finished.");},500);
+                    setTimeout(() => {counter.textContent = "Pres Start";},1000);
+                } 
+            } ,1000);
+            
+
+        }
+    </script>
+</body>
+</html>

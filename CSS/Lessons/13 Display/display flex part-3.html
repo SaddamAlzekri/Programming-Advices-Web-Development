@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body {
+            font-size: 1rem;
+        }
+
+        nav {
+            margin: 0px;
+            border-radius: 5px;
+            background-color: rgb(141, 224, 224);
+
+        }
+
+        #list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+            height: 40px;
+        }
+
+        li {
+            list-style: none;
+            padding: 6px;
+        }
+
+        li:hover {
+            color: white;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #container {
+            padding: 20px 10px 20px;
+            background-color: antiquewhite;
+            display: flex;
+            align-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .item {
+            width: 120px;
+            height: 150px;
+            background-color: aliceblue;
+            flex: 1 1 calc(33% - 1rem);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+
+        }
+
+        #ConnectInfo {
+            padding: 10px;
+            margin-top: 20px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .item2 {
+            padding: 0px;
+            flex: 1 1 calc(33% - 3rem);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+
+        }
+
+    @media (max-width: 800px) {
+      .item {
+        flex: 1 1 calc(50% - 1rem);     /* two columns */
+      }
+    }
+
+     @media (max-width: 500px) {
+      .item {
+        flex: 1 1 calc(50% - 1rem);     /* two columns */
+      }
+    }
+
+    @media (max-width: 400px) {
+      .item {
+        flex: 1 1 calc(100% - 1rem);     /* two columns */
+      }
+    }
+    </style>
+</head>
+<body>
+    <nav id="main-bar">
+        <ul id="list">
+            <li>Home</li>
+            <li>About</li>
+            <li>Gallery</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+    
+    <h3>Response flexbox gallery</h3>
+
+    <section id="container">
+        <img class="item" src="Images/A11.jpg"  alt="Image 6">
+        <img class="item" src="Images/A10.jpg"  alt="Image 6">
+        <img class="item" src="Images/A1.jpg"  alt="Image 6">
+        <img class="item" src="Images/A2.jpg"  alt="Image 6">
+        <img class="item" src="Images/A3.jpg"  alt="Image 6">
+        <img class="item" src="Images/A4.jpg"  alt="Image 6">
+        <img class="item" src="Images/A11.jpg"  alt="Image 6">
+        <img class="item" src="Images/A10.jpg"  alt="Image 6">
+        <img class="item" src="Images/A1.jpg"  alt="Image 6">
+    </section>
+
+    <section id="ConnectInfo">
+        <a class="item2" href="#">Home</a>
+        <a class="item2" href="#">Profile</a>
+        <a class="item2" href="#">Products</a>
+        <a class="item2" href="#">Call Info</a>
+        <a class="item2" href="#">Certificates</a>
+        <a class="item2" href="#">Customers Information</a>
+        <a class="item2" href="#">Gallery</a>
+        <a class="item2" href="#">Company information</a>
+        <a class="item2" href="#">The branch of comapny</a>
+    </section>
+
+</body>
+</html>

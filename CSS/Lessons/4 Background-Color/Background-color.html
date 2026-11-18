@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background color</title>
+
+    <style>
+        body {
+            background-color: black;
+            padding: 10px;
+            color: white;
+        }
+        header {
+            padding: 15px;
+            background-color: green;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        h1,h2 {
+            background-color: blue;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        section {
+            padding: 10px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            background-color: white;
+            border-radius: 10px;
+            color: black;
+        }
+        section > p {
+            padding: 10px;
+            background-color: yellow;
+            border-radius: 10px;
+        }
+        
+        section > p::first-line {
+            background-color: yellow;
+        }
+        #Section-One-Footer {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: red;
+            display: inline-block;
+            margin-top: 0px;
+        }
+
+        ul li:nth-child(odd)
+        {
+            background-color: #E0F7FA;
+            padding: 5px;
+        }
+
+        
+        ul li:nth-child(even)
+        {
+            background-color: lightblue;
+            padding: 5px;
+        }
+
+        table
+        {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: blueviolet;
+            border: 2px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        td {
+            background-color: lightblue;
+            border: 2px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 200px;
+            height: 30;
+        }
+        button {
+            width: 90px;
+            height: 30px;
+            background-color: rgb(240, 102, 47);
+            border-radius: 10px;
+        }
+
+        footer {
+            padding: 10px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            background-color: white;
+            border-radius: 10px;
+            color: black;
+            display: flex;
+        }
+
+        a {
+            padding: 10px;
+        }
+
+        a:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Wellcome to access background color Examples!</h1>
+    </header>
+
+    <section>
+        <h2>Lorem, ipsum.</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis iusto sunt deleniti quisquam harum, recusandae animi voluptatum molestias.
+            <br>
+            quidem molestiae aperiam eum asperiores corrupti, ab possimus, aut sint? Sed, minus!
+        </p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit Porro adipisci accusantium.
+            <br>
+            esse non odit aut, ab eaque recusandae sint sed.</p>
+
+         <div id="Section-One-Footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos!</div>
+    </section>
+
+    <section>
+        <h2>Lists</h2>
+
+        <ul>
+            <li>Lorem, ipsum dolor.</li>
+            <li>Lorem, ipsum dolor.</li>
+            <li>Lorem, ipsum dolor.</li>
+            <li>Lorem, ipsum dolor.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Table</h2>
+
+        <table>
+            <thead>
+                <th>header 1</th>
+                <th>header 2</th>
+            </thead>
+            <tr>
+                <td>cell 1</td>
+                <td>cell 1</td>
+            </tr>
+            <tr>
+                <td>cell 3</td>
+                <td>cell 4</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Form Elemts</h2>
+
+        <label for="Name">Name :</label><br>
+        <input type="text" id="Name" placeholder="Enter your Name">
+        <br><br>
+        <label for="Message">Message :</label><br>
+        <textarea  id="Message" placeholder="Enter the message"></textarea>
+        <br><br>
+        <button type="submit">submit</button>
+    </section>
+    
+    <section>
+        <h2>Links</h2>
+
+        <p><span>Check out this link:</span> <a href="#">programmingadvices.com</a></p>
+    </section>
+</body>
+</html>

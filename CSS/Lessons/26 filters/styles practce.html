@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styles practice</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0;}
+        body {
+            background-color: rgb(241, 237, 237);
+            font-family: Arial,sans-serif;
+            max-width: 1000px;
+            padding: 1rem;
+            height: auto;
+            margin: auto;
+            line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+        }
+        section {
+            margin-top: 3rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 3rem;
+        }
+        img {
+            border: 2px solid  rgba(0, 0, 0, 0.5);
+            width: 100%;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background-color: aqua;
+            border: 2px solid rgb(207, 198, 198);
+            box-shadow: 0 0 12px aqua;
+        }
+        .flex {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+        }
+        .card {
+            position: relative;
+            width: 200px;
+            height: 170px;
+            box-shadow: 0 0 12px rgba(0, 0, 0,0.5);
+        }
+        .filter-effects {
+            width: 300px;
+            height: 150px;
+        }
+        .filter-img {
+            width: 250px;
+            height: 150px;
+            object-fit: cover;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+        .filter-img:hover {
+            filter: grayscale(80%) brightness(1.2);
+            transform: scale(1.05);
+        }
+
+        .image1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }        
+        .image2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: none;
+        }
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        .label {
+            text-align: center;
+        }
+     .grayscale    img { filter: grayscale(100%); }
+    .sepia        img { filter: sepia(100%); }
+    .blur         img { filter: blur(3px); }
+    .brightness   img { filter: brightness(150%); }
+    .contrast     img { filter: contrast(200%); }
+    .hue          img { filter: hue-rotate(90deg); }
+    .invert       img { filter: invert(100%); }
+    .saturate     img { filter: saturate(200%); }
+    .shadow       img { filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5)); }
+    .none         img { filter: none; }
+    </style>
+</head>
+<body>
+    <h1> CSS styling Image Demo</h1>
+
+    <section>
+        <h2>A) Responsive Sizing</h2>
+        <p>An image that scales with its container while preserving aspect ratio.</p>
+        <img src="Examples/Images/A1.jpg" alt="">
+    </section>
+
+    <section>
+        <h2>B) Rounded & Circular Avatars</h2>
+        <p>Square image cropped into a circle, perfect for user avatars.</p>
+        <div><img class="avatar" src="Examples/Images/PA Logo.png" alt=""></div>
+    </section>
+
+    <section>
+        <h2>D) Object-Fit: cover vs. contain</h2>
+        <p>“cover” fills & crops; “contain” shows full image with letterboxing.</p>
+        <div class="flex">
+            <div>
+                <div class="card"><img class="image1" src="Examples/Images/A2.jpg" alt="image in Zoo"></div>
+                <div class="column3">object-fit: cover</div>
+            </div>
+
+            <div>
+                <div class="card" ><img class="image2" src="Examples/Images/A2.jpg" alt="image in Zoo"></div>
+                <div class="column4">object-fit: contain</div>
+            </div> 
+    </div>
+    </section>
+
+    <section>
+        <h2>E) Filter Effects & Hover Transitions</h2>
+
+        <div class="filter-effects">
+            <img class="filter-img" src="Examples/Images/A1.jpg" alt="">
+        </div>
+    </section>
+
+    <section>
+        <div class="filter-grid">
+            <div class="grid-items none">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">none</div>
+            </div>
+
+            <div class="grid-items grayscale">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">grayscale(100%)</div>
+            </div>
+
+            <div class="grid-items sepia">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">sepia(100%)</div>
+            </div>
+
+            <div class="grid-items blur">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">blur(3px)</div>
+            </div>
+
+            <div class="grid-items brightness">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">brightness(150%)</div>
+            </div>
+
+            <div class="grid-items contrast">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">contrast(200%)</div>
+            </div>
+
+            <div class="grid-items hue">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">hue-rotate(90deg)</div>
+            </div>
+
+            <div class="grid-items invert">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">invert(100%)</div>
+            </div>
+
+            <div class="grid-items saturate">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">saturate(200%)</div>
+            </div>
+
+            <div class="grid-items shadow">
+                <img src="Examples/Images/A4.jpg" alt="">
+                <div class="label">drop-shadow(2px 2px 5px)</div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>

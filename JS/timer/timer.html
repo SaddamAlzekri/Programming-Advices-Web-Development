@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="setTimer();"> Click </button>
+    <button type="button" onclick="setIntervalTimer() ;"> Click setInterval</button>
+    <button type="button" onclick="couterFunc() ;"> Click setInterval</button>
+    
+    <script>
+
+        function setTimer(){
+            setTimeout(() => {
+               console.log("Hi, MS Programmer."); 
+            }, 2000);
+        }
+
+        function setIntervalTimer() {
+            setInterval( () => {
+                console.log("Hi, MS Programmer.");
+            },5000);
+        }
+
+        
+        function couterFunc() {
+            let counter = 0;
+            let countID = setInterval(() => {
+                counter++;
+                console.log("Counter: " , counter);
+                if(counter === 5) clearTimeout(countID);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

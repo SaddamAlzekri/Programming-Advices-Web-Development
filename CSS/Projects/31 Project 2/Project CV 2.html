@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project CV - 2</title>
+    <style>
+        :root {
+      /* Surfaces & palette */
+      --bg:            #f6f8fb;    /* page background */
+      --sidebar:       #0ea5a5;    /* sidebar base (teal) */
+      --sidebar-ink:   #ecfeff;    /* light ink used on teal sidebar */
+      --card:          #ffffff;    /* card/background in main column */
+      --ink:           #0f172a;    /* primary text color */
+      --muted:         #6b7280;    /* secondary/quiet text */
+      --accent:        #f97316;    /* brand/accent (orange) */
+      --line:          #e5e7eb;    /* hairline borders/dividers */
+
+      /* Shape & depth */
+      --radius:        18px;                     /* global rounding */
+      --ring:          0 10px 25px rgba(2,6,23,.08); /* soft shadow */
+
+      /* Spacing scale */
+      --space-1: 6px;  --space-2: 10px; --space-3: 14px;
+      --space-4: 20px; --space-5: 28px; --space-6: 40px;
+
+      /* Layout caps */
+      --sidebar-w:     320px;      /* fixed sidebar width on desktop */
+      --maxw:          1200px;     /* page max width */
+    }
+
+    :root:has(#themeSwitch:checked) {
+      --bg:          #0b1220;
+      --sidebar:     #075e5e;
+      --sidebar-ink: #c9f3f5;
+      --card:        #0f172a;
+      --ink:         #e5e7eb;
+      --muted:       #9aa3b2;
+      --accent:      #fb923c;
+      --line:        #1f2a44;
+      --ring:        none; /* avoid glow on dark */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not(:has(#themeSwitch)) {
+        --bg:          #0b1220;
+        --sidebar:     #075e5e;
+        --sidebar-ink: #c9f3f5;
+        --card:        #0f172a;
+        --ink:         #e5e7eb;
+        --muted:       #9aa3b2;
+        --accent:      #fb923c;
+        --line:        #1f2a44;
+        --ring:        none;
+      }
+    }
+
+    *,*::before,*::after { box-sizing: border-box; }             /* predictable sizing */
+    html { -webkit-text-size-adjust: 100%; }                     /* avoid iOS auto-zoom */
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    img { max-width: 100%; display: block; }                     /* responsive media */
+    a { color: var(--accent); text-decoration: none; }           /* links pick accent */
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+        max-width: var(--maxw);
+        margin: 40px auto;
+        padding: 0 var(--space-4);
+        
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: var(--space-4);
+    }
+        @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }        /* stack on small screens */
+    }
+    .sidebar {
+        position: sticky; top: 10px; align-self: start;
+        background: linear-gradient(180deg,
+                    color-mix(in srgb, var(--sidebar) 92%, #0000 8%),  /* subtle top tint */
+                    var(--sidebar));                                   /* base teal */
+        color: var(--sidebar-ink);
+        border-radius: var(--space-4);
+        padding: 18px;
+    }
+    .side-head {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: var(--space-4);
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+    .personaImage {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    .main { display: grid; gap: var(--space-5);  }
+
+    .icon {width: 18px; height: 18px; flex: none; }
+
+    .hero {
+        background: var(--card);
+        padding: var(--space-4);
+        border-radius: var(--space-2);
+        margin-bottom: var(--space-4);
+    }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+    @media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, 1fr); } .sidebar {position: static;}  }
+    @media (max-width: 640px)  { .cards { grid-template-columns: 1fr; }  .sidebar {position: static;} }
+
+    .cardy {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 14px; padding: 18px; box-shadow: var(--ring);
+    }
+    
+    .timeline {
+        background: var(--card);
+        padding: var(--space-4);
+        border-radius: var(--space-2);
+    }
+    .sidebar {
+
+    }
+    .toggle-row {
+        display: flex; align-items: center; gap: var(--space-2);
+        padding: 0 var(--space-5) var(--space-4) var(--space-5);
+    }
+    .toggle-row { display: flex; align-items: center; gap: 10px;
+                  padding: 0 var(--space-5) var(--space-4) var(--space-5); }
+
+    #themeSwitch {
+      position: absolute; inline-size: 1px; block-size: 1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+    }
+
+    .switch {
+        --h: 28px; --w: 54px;                              /* control height/width */
+        inline-size: var(--w); block-size: var(--h);
+        background: #95a0bb;
+        border-radius: var(--space-5);
+        position: relative;
+
+    }
+    .switch::after {
+        content: ""; inset: 1px auto 1px 1px; 
+        position: absolute;
+        inline-size: 28px; block-size: 28px;
+        background: rgb(137, 88, 218);
+        border: 1px solid white;
+        border-radius: 999px;                  /* smooth slide */
+        transition: transform .25s ease;
+    }
+    :root:has(#themeSwitch:checked) .switch::after {
+      transform: translateX(calc(var(--w) - var(--h)));                /* slide to right */
+    }
+    .side-card {
+      background: color-mix(in srgb, var(--sidebar-ink) 8%, #0000);    /* subtle panel */
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 12px; padding: 14px;
+      margin-bottom: 10px;
+    }
+    .links { display: flex; flex-wrap: wrap; gap: 12px 18px; font-size: 14px; margin-top: 8px; }
+    .badge {
+        display: inline-flex; gap: 10px;
+      background: color-mix(in srgb, var(--sidebar-ink) 8%, #0000);    /* subtle panel */
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 12px; padding: 3px;
+      margin-bottom: 10px;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="grid">
+
+            <aside class="sidebar">
+
+                <div class="side-head">
+                    <div class="avatar">
+                        <img class="personaImage" src="Personal- image.jpg" alt="Personal image for cv">
+                    </div>
+                    <div>
+                        <h3>YOUR NAME</h3>
+                        <p>Front-End Developer <br>• UI Engineer</p>
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <input type="checkbox" id="themeSwitch">
+                    <label class="switch" for="themeSwitch" aria-label="Toggle dark or light theme"></label>
+                    <span class="toggle-label">Dark Mode</span>
+                </div>
+
+                <div class="hint">
+                    <p>Tip: this switch uses the CSS :has() selector to override variables.</p>
+                </div>
+
+                <div class="side-body">
+        
+                    <div class="side-card">
+                    <strong>Contact</strong>
+                    <div class="links" aria-label="Contact information">
+                        <a href="mailto:you@example.com" aria-label="Email">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5Z"/>
+                        </svg>
+                            you@example.com
+                        </a>
+
+                    <span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.7 11.7 0 0 0 3.7.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 8a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11.7 11.7 0 0 0 .6 3.7 1 1 0 0 1-.24 1Z"/>
+                        </svg>
+                        +962 7X XXX XXXX
+                    </span>
+
+
+                    <span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
+                        </svg>
+                        Amman - Jordan
+                    </span>
+              
+                    <a href="https://your-portfolio.example" target="_blank" rel="noopener" aria-label="Website">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 17.9V18h-2v1.9A8 8 0 0 1 4.1 13H6v-2H4.1A8 8 0 0 1 11 4.1V6h2V4.1A8 8 0 0 1 19.9 11H18v2h1.9A8 8 0 0 1 13 19.9Z"/>
+                        </svg>
+                        your-portfolio.example
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7 0h3.8v2.05h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.77 2.64 4.77 6.08V23h-4v-6.67c0-1.59-.03-3.63-2.21-3.63-2.21 0-2.55 1.73-2.55 3.52V23h-4V8z"/>
+                        </svg>
+                        linkedin.com/in/your-profile
+                    </a>
+
+                    <a href="https://github.com/your-username" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.9 1.3 3.6 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.6 11.6 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.3 0 4.6-2.7 5.6-5.3 5.9.4.4.7 1 .7 2v2.9c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/>
+                        </svg>
+                        github.com/your-username
+                    </a>
+                </div>
+                    </div>
+
+                    <div class="side-card">
+             <strong>Languages</strong><br>
+             <br>
+            <span class="badge">Arabic (Native)</span>
+            <span class="badge">English (Professional)</span>
+                    </div>
+
+                    <div class="side-card">
+            <strong>Top Skills</strong>
+            <div style="margin-top:8px">
+              <span class="badge">Semantic HTML</span>
+              <span class="badge">Modern CSS</span>
+              <span class="badge">Accessibility</span>
+              <span class="badge">Git & GitHub</span>
+              <span class="badge">Figma</span>
+               <span class="badge">C#</span>
+                <span class="badge">SQL Server</span>
+            </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="main">
+                <div class="hero">
+                    <h2>Resume</h2>
+                    <p>Impact-driven front-end developer specializing in accessible, fast UIs.</p>
+                </div>
+
+                <div class="cards">
+                    <div class="cardy">
+                        <h3>Highlights</h3>
+                        <ul>
+                            <li>Shipped 20+ responsive sites</li>
+                            <li>Perf budgets & Lighthouse 95+</li>
+                            <li>Mentored 5 juniors</li>
+                        </ul>
+                    </div>
+
+                    <div class="cardy">
+                        <h3>Tooling</h3>
+                        <p>Vite, ESLint, Prettier, Playwright basics, Storybook.</p>
+                    </div>
+
+                    <div class="cardy">
+                        <h3>Focus</h3>
+                        <p>Design systems, design tokens, CSS architecture, a11y.</p>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <h2>Experience</h2>
+                    <div>
+                        <div>
+                            <h3>Senior Front-End Developer</h3>
+                            <p>2023 — Present</p>
+                        </div>
+                        <p>Tech Co • Amman</p>
+                    
+                        <ul>
+                            <li>Built component library; reduced CSS by 30% using tokens.</li>
+                            <li>Led accessibility drive to AA; created lint rules & docs.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div>
+                            <h3>Web Designer</h3>
+                            <p>2020 — 2023</p>
+                        </div>
+                        <p>Creative Studio • Remote</p>
+                    
+                        <ul>
+                            <li>Prototyped 12 marketing sites; built a mini design system.</li>
+                            <li>Handed off clean, semantic HTML/CSS to dev teams.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <h2>Selected Projects</h2>
+                    <div>
+                        <div>
+                            <h3>Portfolio Website</h3>
+                            <p>2024</p>
+                        </div>
+                        <p>Personal</p>
+                    
+                        <ul>
+                            <li>Static site scoring 95+ on Lighthouse Performance.</li>
+                            <li>CI/CD previews on each PR; automated checks.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div>
+                            <h3>Design System Demo</h3>
+                            <p>2023</p>
+                        </div>
+                        <p>Open Source</p>
+                    
+                        <ul>
+                            <li>Token-based theming via CSS custom properties.</li>
+                            <li>Documented components; onboarded team in a week.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <div class="cardy">
+                        <h3>Education</h3>
+                        <h3>B.Sc. Computer Science</h3>
+                        <p>University Name • 2016 — 2020</p>
+                        <ul>
+                            <li>Graduated with Honors</li>
+                            <li>Key courses: HCI, Data Structures</li>
+                        </ul>
+                    </div>
+
+                    <div class="cardy">
+                        <h3>Certifications</h3>
+                        <ul>
+                            <li>Responsive Web Design —</li>
+                        </ul>
+                        <p>freeCodeCamp (2023)</p>
+                    </div>
+
+                    <div class="cardy">
+                        <h3>Volunteer</h3>
+                        <p>Mentor, Local Coding Club (2022—Present). Weekly beginner sessions.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

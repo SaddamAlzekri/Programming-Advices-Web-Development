@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outline</title>
+
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: darkseagreen;
+            outline: 3px solid rgb(5, 179, 236);
+        }
+
+        #box2 {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(143, 183, 188);
+            outline-color: rgb(149, 13, 228);
+            outline-width: 3px;
+            outline-style: dotted;
+            outline-offset: 6px;
+        }
+
+        #button {
+            width: 180px;
+            height: 20px;
+            border-radius: 3px;
+            border: none;
+            color: white;
+            background-color: blue;
+        }
+
+        #button:focus {
+            /* outline: 3px dotted red;
+            outline-offset: 3px; */
+
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+        }
+        
+        #input {
+            border-color: black;
+            border-radius: 5px;
+        }
+
+        #input:focus {
+            outline: 3px dotted red;
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Outline Dimonstrations</h1>
+    <h2>1&rpar; simple outline (shorthand)</h2>
+    <div id="box1"></div>
+    <h2>2&rpar; Dashed outline with offset</h2>
+    <div id="box2"></div>
+    <h2>3&rpar; focus outline in button</h2>
+    <button id="button">Click or Tab To Focus Me</button>
+    <h2>3&rpar; Custom Input Focus (Removing Defoult Outline)</h2>
+    <input id="input" type="text" placeholder="Focus Me With Tab">
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="showMyWindow();"> Click </button>
+
+    <script>
+        function showMyWindow () {
+            let myWin = window.open("", "popupDemo", "width=400, height=400, left=600, top=200");
+
+            setTimeout(() => {
+                myWin.blur();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

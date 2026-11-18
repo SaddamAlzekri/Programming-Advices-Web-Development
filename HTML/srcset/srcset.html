@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!-- من المفترض أن يتم عرض كل الصور فس srcset by w not px لكن في size تعرض px -->
+    <img src="My-Image.jpg" 
+
+    srcset="My-Image1.jpg 360w,
+            My-Image2.jpg 500w,
+            My-Image3.jpg 800px"
+
+    sizes="(max-width: 360w) 200px,
+           (max-width: 600px) 360w,
+           (max-width: 800px) 600px"
+           
+           alt="My Personal image"
+    >
+
+</body>
+</html>

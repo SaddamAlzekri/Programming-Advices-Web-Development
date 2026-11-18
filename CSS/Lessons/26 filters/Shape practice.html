@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape practice</title>
+    <style>
+        * {
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0px;
+            padding: 0px;
+            margin: auto;
+            margin-left: 0.3rem;
+            margin-right: 0.3rem;
+            border-radius: 5px;
+        }
+
+        body {
+            max-width: 1000px;
+            background-color: rgb(236, 234, 234);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        section {
+            margin-top: 20px;
+            padding: 0.5rem;
+            background-color: white;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .demo {
+            margin-top: 10px;
+        }
+        .circle-via-border {
+            width: 150px;
+            height: 150px;
+            border-radius: 70px;
+            object-fit: cover;
+        }
+        .circle-via-clip-path {
+            width: 150px;
+            height: 150px;
+            clip-path: circle(50%);
+            object-fit: cover;
+        }
+        .right-circle-half {
+            width: 150px;
+            height: 150px;
+            clip-path: circle(50% at right);
+            object-fit: cover;
+        }
+        .left-circle-half {
+            width: 150px;
+            height: 150px;
+            clip-path: circle(50% at left);
+            object-fit: cover;
+        }
+        .Ellipse-via-border-radius {
+            width: 300px;
+            height: 150px;
+            border-radius: 50% / 50%;
+            object-fit: cover;
+        }
+        .Ellipse-via-border-radius2 {
+            width: 300px;
+            height: 150px;
+            border-radius: 50% / 20%;
+            object-fit: cover;
+        }
+        .Ellipse-via-border-radius3 {
+            width: 300px;
+            height: 150px;
+            clip-path: ellipse(50% 35%);
+            object-fit: cover;
+        }
+        .right-ellipse-via-ellipse {
+            width: 300px;
+            height: 150px;
+            clip-path: ellipse(50% 35% at right);
+            object-fit: cover;
+        }
+        .left-ellipse-via-ellipse {
+            width: 300px;
+            height: 150px;
+            clip-path: ellipse(50% 35% at left);
+            object-fit: cover;
+        }
+        .polygon {
+            width: 300px;
+            height: 150px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Image Shapes Demo</h1>
+
+    <section>
+        <h2>A.1) Circle via border-radius</h2>
+        <p class="label">Mask a square image into a perfect circle using border-radius: 50%</p>
+        <div class="demo">
+            <img class="circle-via-border" src="Examples/Images/A1.jpg" alt="Circle via border-radius">
+        </div>
+    </section>
+
+    <section>
+        <h2>A.2) Circle via clip-path</h2>
+        <p class="label">Mask a square image into a perfect circle using clip-path.</p>
+        <div class="demo">
+            <img class="circle-via-clip-path" src="Examples/Images/A1.jpg" alt="circle via clip-path">
+        </div>
+    </section>
+
+    <section>
+        <h2>A.3) Half Right Circle via clip-path</h2>
+        <p class="label">Mask a square image into a right half circle using clip-path.</p>
+        <div class="demo">
+            <img class="right-circle-half" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+        </div>
+    </section>
+    
+    <section>
+        <h2>A.3) Half left Circle via clip-path</h2>
+        <p class="label">Mask a square image into a left half circle using clip-path.</p>
+        <div class="demo">
+            <img class="left-circle-half" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+        </div>
+    </section>
+        
+    <section>
+        <h2>B.1) Ellipse via border-radius</h2>
+        <p class="label">Create an ellipse by specifying horizontal and vertical radii.</p>
+        <div class="demo">
+            <img class="Ellipse-via-border-radius" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+        </div>
+    </section>
+
+    <section>
+    <h2>B.3) Ellipse via <code>clip-path:ellipse</code></h2>
+    <p class="label">Create an ellipse via clip-path.</p>
+    <div class="demo">
+        <img class="Ellipse-via-border-radius2" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+    </div>
+    </section>
+
+    <section>
+    <h2>B.3) Ellipse via <code>clip-path:ellipse</code></h2>
+    <p class="label">Create an ellipse via clip-path.</p>
+    <div class="demo">
+        <img class="Ellipse-via-border-radius3" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+    </div>
+    </section>
+
+    <section>
+        <h2>B.3) Ellipse via <code>clip-path:ellipse</code></h2>
+        <p class="label">Create an ellipse via clip-path.</p>
+    <div class="demo">
+        <img class="right-ellipse-via-ellipse" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+    </div>
+    </section>
+    
+    <section>
+        <h2>B.3) Ellipse via <code>clip-path:ellipse</code></h2>
+        <p class="label">Create an ellipse via clip-path.</p>
+    <div class="demo">
+        <img class="left-ellipse-via-ellipse" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+    </div>
+    </section>
+
+    <section>
+        <h2>C.1) Polygon via <code>clip-path:ellipse</code></h2>
+        <p class="label">Clip an image into a hexagon shape using a four-point polygon().</p>
+    <div class="demo">
+        <img class="polygon" src="Examples/Images/A1.jpg" alt="half-circle via clip-path">
+    </div>
+    </section>
+
+
+</body>
+</html>

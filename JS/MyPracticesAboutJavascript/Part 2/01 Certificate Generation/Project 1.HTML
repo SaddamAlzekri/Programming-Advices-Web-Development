@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --main-background-color: #0b1020;
+            --inner-background-color: rgba(255, 255, 255, 0.06);
+            --outer-border-color: rgba(255, 255, 255, 0.12);
+            --input-border-color: rgba(255, 255, 255, 0.35);
+            --focus-border-color: rgba(255, 255, 255, 0.35);
+            --error-border-color: rgba(255, 90, 90, 0.75);
+            --font-border-color: rgba(243, 139, 139, 0.55);
+            --button-background-color: rgba(90, 170, 255, 0.22);
+            --button-background-color: rgba(90, 170, 255, 0.35);
+            --cert-background-color: #07070a;
+
+            --font-color: #e9eefc;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            background: var(--main-background-color);
+            color: var(--font-color);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+            sans-serif;            
+            font-size: 14px;
+            margin: 0;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .page {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 10px;
+        }
+        .certificate-form {
+            background: var(--inner-background-color);
+            border: 1px solid var(--outer-border-color);
+            border-radius: 14px;
+            padding: 14px;
+        }
+        .muted {
+            opacity: 0.7;
+        }
+        .row {
+            margin: 0 0 13px;
+        }
+        input, textarea {
+            background: var(--main-background-color);
+            color: var(--font-color);
+            border: 1px solid var(--error-border-color);
+            border-radius: 14px;
+            padding: 10px 12px;
+            margin: 6px 0 0 0;
+            width: 100%;
+            outline: none;
+        }
+        .text {
+            min-height: 70px;
+            resize: vertical;
+        }
+        input:focus,
+        textarea:focus {
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+        .error {
+        display: none;
+        font-size: 12px;
+        color: #ffb4b4;
+        line-height: 1.25;
+      }
+      .row.invalid .error {
+        display: block;
+      }
+        button {
+            background: var(--inner-background-color);
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+        }
+        button.primary {
+            background: rgba(90, 170, 255, 0.22);
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .topbar { 
+            background: var(--inner-background-color);
+            border: 1px solid var(--outer-border-color);
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .status {
+            margin-top: 10px;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .status.ok {
+            color: #b8ffcb;
+        }
+        .status.bad {
+            color: #ffb4b4;
+        }
+        .row.invalid input, .row.invalid textarea {
+            border-color: rgba(255, 90, 90, 0.75);
+        }
+        .cert {
+            position: sticky;
+            top: 5px;
+            width: 800px;
+            height: 100vh;
+            background: var(--cert-background-color);
+            margin: 16px 0;
+        }
+        .outer-frame {
+            border: 3px solid rgba(216, 177, 92, 0.75);
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+        }
+        .inner-frame {
+            border: 1px solid rgba(216, 177, 92, 0.35);
+             width: 100%;
+            height: 100%;
+            padding: 4px;
+        }
+        .header {
+            text-align: center;
+            margin-top: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 0px;
+            border-radius: 10px;
+            width: 30%;
+            height: auto;
+        }
+        .title {
+            margin: 0;
+            font-weight: 900;
+            font-size: x-large;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            font-weight: 800;
+        }
+        .studentName {
+            font-weight: 900;
+            font-size: xx-large;
+            text-align: center;
+        }
+        .texts {
+            text-align: center;
+            font-weight: 800;
+        }
+        .courseName {
+            text-align: center;
+            font-size: x-large;
+            font-weight: 800;
+        }
+        .line {
+            width: 90%;
+            padding: 3;
+            margin: 0 auto;
+            border: 1px solid rgba(216, 177, 92, 0.75);
+        }
+        .lineX {
+            height: 1px;
+            width: 45%;
+            background: rgba(216, 177, 92, 0.55);
+            margin: 8px 0;
+            margin-left: auto;
+        }
+        .sigName {
+            padding: 0 19px 0;
+        }
+        
+        @media(max-width: 900px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="certificate-form">
+            <h3 style="margin: 0 0 8px;">Certificate Fields</h3>
+            <div class="muted" style="margin: 0 0 8px;">
+                Type values below — the certificate updates instantly. <br>
+                Validation rules apply. Print is enabled only when all fields are ✅ valid.
+            </div>
+
+                <div class="row" id="rowName">
+                    <label for="studentName">Course Name</label><br>
+                    <input id="studentName"
+                    type="text" required placeholder="e.g., Saddam Al-zekri" autocomplete="off">
+                    <div class="error">Name is required (min 3 characters).</div>
+                </div>
+
+                <div class="row" id="rowinstructor">
+                    <label for="instructorName"> Name</label><br>
+                    <input id="instructorName"
+                    type="text" required placeholder="e.g., Dr. Mohammed Abu-Hadhoud" autocomplete="off">
+                    <div class="error">Course name is required (min 6 characters).</div>
+                </div>
+
+                <div class="row" id="rowCourse">
+                    <label for="courseName">Instructor Name</label><br>
+                    <textarea name="" id="courseName" class="text"
+                    placeholder="e.g., Goal Setting: Crafting and Achieving Your Objectives."></textarea>
+                    <div class="error">Course name is required (min 6 characters).</div>
+                </div>
+
+                <div class="row" id="rowSignature">
+                    <label for="signatureFile">Signature Name</label><br>
+                    <input id="signatureFile"
+                    type="file" required autocomplete="off">
+                    <div class="">Upload a PNG/JPG/WebP. It will update the signature instantly.</div>
+                    <div class="error">Please upload a signature image.</div>
+                </div>
+
+                <div class="row" id="rowIssued">
+                    <label for="issuedDate">Issued Date</label><br>
+                    <input id="issuedDate"
+                    type="date" required autocomplete="off">
+                    <div class="error">Please upload a signature image.</div>
+                </div>
+
+                <div class="row" id="rowSerial">
+                    <label for="serial">Certificate Serial</label><br>
+                    <input id="serial"
+                    type="text" placeholder="e.g., MD-2025-000123" required autocomplete="off">
+                    <div class="error">Please upload a signature image.</div>
+                </div>
+
+                <div class="actions">
+                    <button type="button" id="btnFillDemo">Fill Demo</button>
+                    <button type="button" id="btnReset">Reset</button>
+                    <button type="button" class="primary" id="btnPrint" disabled>Print A4 Landscape</button>
+                </div>
+                <div class="status" id="statusLine"></div>
+        </div>
+
+        <div class="certificate">
+            <div class="topbar">
+                <div >Preview (Print will output ONLY the certificate)</div>
+                <div id="validBadge">❌ Not ready to print</div>
+            </div>
+
+            <div class="cert">
+                <div class="outer-frame">
+                    <div class="inner-frame">
+                        <table class="mdc-meta" width="100%" style="text-align: left; margin: 0;">
+                            <tr>
+                                <td class="mdc-metaCell mdc-left" width="60%">
+                                    <div class="mdc-metaLabel">Issued Date</div>
+                                    <div class="mdc-metaValue" id="certIssued">—</div>
+                                </td>
+                                <td class="mdc-metaCell mdc-right" style="text-align: right; margin: 0;">
+                                    <div class="mdc-metaLabel">Certificate Serial</div>
+                                    <div class="mdc-metaValue mdc-mono" id="certSerial">—</div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="header">
+                            <img class="logo" src="logo.png" alt="logo">
+                        </div>
+                        
+                        <div class="title">Certificate of Completion</div>
+              
+                        <div class="subtitle">This is proudly presented to</div>
+
+                        <div class="studentName" id="certName">Student Name</div>
+
+                        <div class="texts">for successfully completing</div>
+
+                        <div class="courseName" id="certCourse">Course Name Goes Here</div>
+                        <div class="line"></div>
+
+                        <table width="100%";>
+                            <tr>
+                                <td>
+                                    <img src="Certified.png" alt="certified"
+                                    width="100" height="100">
+                                    <div class="footer">www.Website.com</div>
+                                    <div class="mdc-sigSpacer">&nbsp;</div>
+                                </td>
+                                <td style="text-align: right; margin: 0;">
+                                    <img src="DefaultSig.png" 
+                                    alt="signature" id="certSignatureImg"
+                                    width="250" height="70">
+                                    <div class="lineX"></div>
+                                    <div class="sigName" id="certInstructor">Dr. Mohammed Abu-Hadhoud</div>
+                                    <div class="mdc-sigSpacer">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        
+                </div>
+            </div>
+        </div>
+    </div>    
+    <script>
+        const elName = document.getElementById("studentName");
+        const elInstructor = document.getElementById("instructorName");
+        const elCourse = document.getElementById("courseName");
+        const elSignature = document.getElementById("signatureFile");
+        const elIssuedDate = document.getElementById("issuedDate");
+        const elSerial = document.getElementById("serial");
+
+
+        const certName = document.getElementById("certName");
+        const certCourse = document.getElementById("certCourse");
+        const certInstructor = document.getElementById("certInstructor");
+        const certIssued = document.getElementById("certIssued");
+        const certSerial = document.getElementById("certSerial");
+        const certSignatureImg = document.getElementById("certSignatureImg");
+
+
+        const rowName = document.getElementById("rowName");
+        const rowInstructor = document.getElementById("rowinstructor");
+        const rowCourse = document.getElementById("rowCourse");
+        const rowsignature = document.getElementById("rowSignature");
+        const rowIssued = document.getElementById("rowIssued");
+        const rowSerial = document.getElementById("rowSerial");
+
+        const btnPrint = document.getElementById("btnPrint");
+        const btnReset = document.getElementById("btnReset");
+        const btnFillDemo = document.getElementById("btnFillDemo");
+        const statusLine = document.getElementById("statusLine");
+        const validBadge = document.getElementById("validBadge");
+        
+        let signatureObjectUrl = null;
+
+        function dateFormat(yyyymmdd) {
+            if(!yyyymmdd) return;
+
+            const [y, m, d] = yyyymmdd.split("-");
+
+            if(!y || !m || !d) return "-";
+
+            return `${d} - ${m} - ${y}`;
+        }
+
+        function validateName(value) {
+            return value.trim().length >= 3;
+        }
+
+        function validateCourse(value) {
+            return value.trim().length >= 6;
+        }
+
+        function validateInstructor(value) {
+            return value.trim().length >= 6;
+        } 
+
+        function validateIssued(value) {
+            return Boolean(value);
+        }
+
+        function validateSerial(value) {
+            const v = value.trim();
+
+            if(v.length <= 6) return;
+
+            return /^[A-Za-z0-9-]+$/.test(v);
+
+        }
+    
+        function validatesignature(fileInput) {
+            const file = fileInput.files && fileInput.files[0];
+            return Boolean(file);
+        }
+        
+        function setRowValid(rowEl, isValid) {
+            rowEl.classList.toggle("invalid", !isValid);
+        }
+
+        function updateCertificate() {
+            certName.textContent= elName.value.trim() || "Student Name";
+            
+            certCourse.textContent = elCourse.value.trim() || "Course Name Goes Here";
+
+            certInstructor.textContent = elInstructor.value.trim() || "Instructor Name Goes Here";
+
+            certIssued.textContent = dateFormat(elIssuedDate.value);
+
+            certSerial.textContent = elSerial.value.trim() || "—";
+        }
+
+        function applySignatureFromFile() {
+            const file = elSignature.files && elSignature.files[0];
+            if (!file) return; // no file selected
+
+            if (!file.type || !file.type.startsWith("image/")) {
+                return;
+            }
+            
+            if (signatureObjectUrl) {
+                URL.revokeObjectURL(signatureObjectUrl);
+                signatureObjectUrl = null;
+            }
+
+            signatureObjectUrl = URL.createObjectURL(file);
+            certSignatureImg.src = signatureObjectUrl;
+        }
+
+        function validateAll () {
+            const okName = validateName(elName.value);
+            const okInstructor = validateInstructor(elInstructor.value);
+            const okCourse = validateCourse(elCourse.value);
+            const okSignature = validatesignature(elSignature);
+            const okIssuedDate = validateIssued(elIssuedDate.value);
+            const okSerial = validateSerial(elSerial.value);
+
+            setRowValid(rowName, okName);
+            setRowValid(rowInstructor, okInstructor);
+            setRowValid(rowCourse, okCourse);
+            setRowValid(rowsignature, okSignature);
+            setRowValid(rowIssued, okIssuedDate);
+            setRowValid(rowSerial, okSerial);
+
+            const allOk = okName && okInstructor && okCourse && okSignature && okIssuedDate && okSerial;
+
+            btnPrint.disabled = !allOk;
+
+            if (allOk) {
+                statusLine.textContent = "✅ All fields are valid. Ready to print.";
+                statusLine.className = "status ok";
+                validBadge.textContent = "✅ Ready to print";
+            } else {
+                statusLine.textContent =  "❌ Please fix the highlighted fields to enable printing.";
+                statusLine.className = "status bad";
+                validBadge.textContent = "❌ Not ready to print";
+            }
+            return allOk;
+        }
+        
+        function onInputChange() {
+            updateCertificate();
+            validateAll();
+        }
+
+        [elName, elCourse, elInstructor, elSerial, elIssuedDate].forEach( (el) => {
+            el.addEventListener("input",  onInputChange);
+            el.addEventListener("change",  onInputChange);
+        });
+
+        elSignature.addEventListener("change", () => {
+            applySignatureFromFile();
+            validateAll();
+        });
+        
+        btnReset.addEventListener("click", () => {
+            elName.value = "";
+            elCourse.value = "";
+            elInstructor.value = "";
+            elIssuedDate.value = "";
+            elSerial.value = "";
+            elSignature.value = "";
+
+            if (signatureObjectUrl) {
+                URL.revokeObjectURL(signatureObjectUrl);
+                signatureObjectUrl = null;
+            }
+            certSignatureImg.src = "DefaultSig.png";
+
+            onInputChange();
+      });
+        
+        btnFillDemo.addEventListener("click", () => {
+            elName.value = "Mohammed Abu-Hadhoud";
+            elCourse.value = "Goal Setting: Crafting and Achieving Your Objectives.";
+            elInstructor.value = "Dr. Mohammed Abu-Hadhoud";
+            elIssuedDate.value = new Date().toISOString().slice(0, 10);
+            elSerial.value = "MD-2025-000123";
+
+            certSignatureImg.src = "sig1.png";
+
+            onInputChange();
+      });
+
+        onInputChange();
+    </script>
+</body>
+</html>
+

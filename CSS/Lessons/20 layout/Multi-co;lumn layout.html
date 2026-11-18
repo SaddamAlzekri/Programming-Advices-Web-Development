@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-column layout</title>
+
+    <style>
+        .column-one {
+            column-count: 3;
+            column-gap: 10px;
+        }
+
+        .column-Two {
+            margin: 40px 0px 40px;
+            column-count: 3;
+            column-gap: 10px;
+            column-rule: 2px solid black;
+        }
+
+        .column-Three {
+            column-width: 300px;
+            column-gap: 20px;
+            column-rule: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Multi-Column Layout Examples</h1>
+
+    <div>
+        <p class="column-one">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia in doloremque eveniet. Corporis dolore consectetur doloribus eum, accusantium assumenda sapiente hic molestias numquam velit placeat distinctio voluptate quas consequatur. Non necessitatibus quod praesentium, libero magni repellat repellendus perferendis inventore facilis?</p>
+    </div>
+    <div  class="column-Two">
+        column-rule: 2px solid black;
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat earum consequatur id, dolor explicabo velit impedit cumque error totam ipsum nihil aliquam, et ab alias voluptatum quisquam ratione sed eligendi!</p>
+    </div>
+
+    <div class="column-Three">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error architecto voluptas quisquam id quasi distinctio ducimus eius molestias ex totam laudantium possimus fugit voluptatibus nam sapiente doloremque amet, et odit.</p>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    *, *::after, *::before { box-sizing: border-box;}
+    body {
+        background: lightgray;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        margin: 0 auto;
+        width: 400px;
+        height: fit-content;
+        padding: 20px;
+        background-color: white;
+        display: grid;
+        gap: 10px;
+        border-radius: 5px;
+    }
+    h1 {
+        text-align: center;
+    }
+    button {
+        background: blue;
+        border: none;
+        border-radius: 10px;
+        height: 30px;
+       transition: 0.3s ease;
+      }
+
+      button:hover {
+        background: #0056b3;
+        transform: scale(1.03);
+      }
+    input {
+        height: 30px;
+        border-radius: 10px;
+    }
+   </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cookie Demo</h1>
+        <input id="nameBox" type="text" placeholder="Enter your Name..">
+        <input id="colorBox" type="text" placeholder="Enter your favorite color..">
+
+        <button type="button" onclick="saveCookies()">Save Cookies</button>
+        <button type="button" onclick="readSpecificCookies()">Read Save Cookies</button>
+        <button type="button" onclick="DeleteCookies()">Delete Cookies</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+      function saveCookies() {
+        const name = document.getElementById("nameBox").value;
+        const color = document.getElementById("colorBox").value;
+
+        // Create an expiration date 7 days from now
+        const expiration = new Date();
+        expiration.setDate(expiration.getDate() + 7);
+
+        // Create cookie 1
+        document.cookie =
+          "username=" +
+          name +
+          "; expires=" +
+          expiration.toUTCString() +
+          "; path=/";
+
+        // Create cookie 2
+        document.cookie =
+          "favoriteColor=" +
+          color +
+          "; expires=" +
+          expiration.toUTCString() +
+          "; path=/";
+
+        alert("Cookies saved!");
+      }
+
+      function getCookie(cookieName) {
+        // Split all cookies into an array
+        const cookies = document.cookie.split(";");
+
+        // Loop through cookie list
+        for (let c of cookies) {
+          c = c.trim();
+
+          // Look for "cookieName="
+          if (c.startsWith(cookieName + "=")) {
+            // Return only the value
+            return c.substring(cookieName.length + 1);
+          }
+        }
+
+        return null; // Not found
+      }
+
+      
+      function readSpecificCookies() {
+        const name = getCookie("username");
+        const color = getCookie("favoriteColor");
+
+        const resultBox = document.getElementById("output");
+
+        resultBox.innerHTML = `<strong>Saved Cookies:</strong><br><br>
+         Username: ${name ?? "❌ Not Found"}<br>
+         Favorite Color: ${color ?? "❌ Not Found"}`;
+      }
+    
+      function DeleteCookies() {
+        const expiration = new Date();
+        expiration.setDate(expiration.getDate() - 1000);
+
+        // Create cookie 1
+        document.cookie =
+          "username=; expires=" +
+          expiration.toUTCString() +
+          "; path=/";
+
+        // Create cookie 2
+        document.cookie =
+          "favoriteColor=; expires=" +
+          expiration.toUTCString() +
+          "; path=/";
+
+        alert("Delete Done!");
+      }
+
+    </script>
+</body>
+</html>
+
+

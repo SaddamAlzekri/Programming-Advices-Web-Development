@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Test page</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt, nulla!</p>
+    
+    <button type="button" onclick="Test();">inner Pixles</button>
+
+
+    <script>
+        function Test(){
+            console.log("innerWidth: " + window.innerWidth);
+            console.log(`innerWidth: ${window.innerHeight}`);
+            console.log(`outterWidth: ${window.outerWidth}`);
+            console.log(`OutterHight: ${window.outerHeight}`);
+            console.log(`screen X: ${window.screenX}`);
+            console.log(`screen Y: ${window.screenY}`);
+        }
+
+        if(window.innerWidth < 800)
+        {
+            alert("the width least of 800px")
+            document.body.style.backgroundColor = "lightblue";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0b1020;
+        color: #e9eefc;
+        margin: 0;
+        padding: 24px;
+      }
+
+      .app {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        padding: 20px;
+      }
+
+      h2 {
+        margin: 0 0 10px;
+      }
+
+      p {
+        margin: 0 0 16px;
+        opacity: 0.8;
+      }
+
+      input {
+        width: 100%;
+        padding: 14px 0px 14px 5px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(0, 0, 0, 0.25);
+        color: #e9eefc;
+        font-size: 16px;
+        outline: none;
+      }
+
+      .status {
+        margin-top: 12px;
+        font-size: 14px;
+        opacity: 0.8;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .item {
+        padding: 14px;
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .item strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+    </style>
+</head>
+<body>
+    <div class="app">
+      <div class="card">
+
+        <h2>Live User Search</h2>
+        <p>
+          Type a name to search users. Try letter L , or le  Requests are debounced and cancelled
+          correctly.
+        </p>
+
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search users by name..."
+          autocomplete="off"
+        />
+
+        <div class="status" id="status">Idle</div>
+
+        <div class="grid" id="results"></div>
+      </div>
+    </div>
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const statusDiv = document.getElementById("status");
+        const resultsDiv = document.getElementById("results");
+
+        let controller = null; // To hold the AbortController instance
+        let debounceTimer = null; // To hold the debounce timer
+
+        function renderUsers(users) {
+            resultsDiv.innerHTML = users.map( (user) =>`
+            <div class="item">
+                <strong>${user.name}</strong>
+                <div>${user.email}</div>
+            </div>
+                `).join("");
+        }
+
+        async function searchUsers(query) {
+            if(controller) {
+                controller.abort();
+            }
+
+            controller = new AbortController();
+
+            try {
+                //const url = `https://jsonplaceholder.typicode.com/users?name_like=${query}`;
+                const url =  "https://jsonplaceholder.typicode.com/users";
+
+                const response = await fetch(url, { signal: controller.signal });
+
+                if(!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                const users = await response.json();
+
+                const filters = users.filter( user => user.name.toLowerCase().includes(query.toLowerCase()));
+                
+                renderUsers(filters);
+                
+                statusDiv.textContent = `Found ${filters.length} users`;
+            }catch (error) {
+                // Abort errors are expected — ignore them
+                if (error.name === "AbortError") {
+                    return;
+                }
+                statusDiv.textContent = "Error loading data";
+            }
+        }
+        
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim();
+
+        // Clear previous debounce timer
+        clearTimeout(debounceTimer);
+
+        if (!query) {
+          resultsDiv.innerHTML = "";
+          statusDiv.textContent = "Idle";
+          return;
+        }
+
+        // Debounce: wait 400ms after user stops typing
+        debounceTimer = setTimeout(() => {
+          searchUsers(query);
+        }, 400);
+      });
+    </script>
+</body>
+</html>

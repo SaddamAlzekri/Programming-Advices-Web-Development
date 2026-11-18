@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Float and Clear Demo</title>
+    <style>
+
+        .float-left {
+            width: 150px;
+            height: 100px;
+            background-color: rgb(190, 184, 177);
+            float: left;
+            margin: 0px 10px 0px;
+        }
+
+        .float-right {
+            width: 150px;
+            height: 100px;
+            background-color: rgb(190, 184, 177);
+            float: right;
+            margin: 0px 10px 0px;
+        }
+
+        .column {
+            float: left;
+            width: 25%;
+            background-color: gray;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .table {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        footer {
+            background-color: gray;
+            padding: 10px;
+        }
+        .clearing {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS `float` and `clear` Demo</h1>
+
+    <section>
+        <h2>Floating an Image - Left</h2>
+        <div class="float-left"></div>
+        <p>This paragraph wraps around the floated image. Floats allow inline content to flow beside an image or box. Notice how text comes up alongside the box until it clears the bottom edge, then continues full-width.</p>
+        <div class="clearing"></div>
+    </section>
+
+    <section>
+        <h2>Floating an Image - Right</h2>
+        <div class="float-right"></div>
+        <p>This paragraph wraps around the floated image. Floats allow inline content to flow beside an image or box. Notice how text comes up alongside the box until it clears the bottom edge, then continues full-width.</p>
+        <div class="clearing"></div>
+    </section>
+
+    <section class="table">
+        <h2>Two-Column Layout with Floats</h2>
+        <div class="column">
+            <h2>Column One</h2>
+            <p>Using `float: left` and a percentage width, you can create multi-column layouts. Each column floats beside the other until the container’s width is filled.</p>
+        </div>
+
+        <div class="column">
+            <h2>Column Two</h2>
+            <p>Without a clearfix, the parent would collapse to zero height. Adding the `.clearfix` class ensures the container expands to wrap both floated columns.</p>
+        </div>
+    </section>
+
+    <footer>
+        Footer stays below floated content thanks to clearing.
+    </footer>
+
+    
+</body>
+</html>

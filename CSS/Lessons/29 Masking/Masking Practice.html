@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masking</title>
+
+    <style>
+        :root {
+            --bg: #0f1226;
+            --card: #171a35;
+            --ink: #e8ebff;
+            --muted: #b9c0ff;
+        }
+        * {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+        span {
+            border: 1px solid white;
+            padding: 5px;
+            border-radius: 20px;
+            background-color: var(--bg);
+        }
+        .card {
+            background-color: var(--card);
+            color: var(--ink);
+            padding: 1rem;
+            border-radius: 10px;
+            position: relative;
+        }
+        .padge {
+            border-radius: 14px;
+            overflow: hidden;
+            width: 90%;
+            aspect-ratio: 16/10;
+            border: 1px solid #2a2f64;
+            background: #0b0e23;
+            display: grid;
+            place-items: center;
+            padding: 1rem;
+            position: relative;
+        }
+        .bg-photo {
+            width: 100%;
+            height: 100%;
+            background-image: url(Examples/Images/A2.jpg);
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+        .caption {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid white;
+            padding: 5px;
+            border-radius: 20px;
+            background-color: var(--card);
+        }
+        .demo1 {
+            mask-image: radial-gradient(
+                circle at 50% 50%,
+                rgba(255, 0, 0, 1) 45%,
+                rgba(255, 0, 0, 0) 60%
+            );
+
+            -webkit-mask-image: radial-gradient(
+                circle at 50% 50%,
+                rgba(255, 0, 0, 1) 45%,
+                rgba(255, 0, 0, 0) 60%
+            );
+
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+        }
+        .demo2 {
+            mask-image: radial-gradient(
+                circle at 50% 50%,
+                rgba(255, 0, 0, 1) 45%,
+                rgba(255, 0, 0, 0) 60%
+            );
+
+            -webkit-mask-image: radial-gradient(
+                circle at 50% 50%,
+                rgba(255, 0, 0, 1) 45%,
+                rgba(255, 0, 0, 0) 60%
+            );
+
+            mask-size: 50px 50px;
+            -webkit-mask-size: 50px 50px;
+            mask-position: 10px 10px;
+            -webkit-mask-position: 10px 10px;
+            mask-repeat: repeat;
+            -webkit-mask-repeat: repeat;
+            transition-duration: 1s;
+        }
+        .demo2:hover {
+            mask-size: 60px 60px;
+            -webkit-mask-size: 60px 60px;
+            mask-position: 20px 10px;
+            -webkit-mask-position: 20px 10px;
+            mask-repeat: repeat;
+            -webkit-mask-repeat: repeat;
+        }
+        .demo3 {
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%);
+        }
+        .demo3:hover {
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+        }
+        .demo4 {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 20px;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .demo5 {
+            display: grid;
+            align-items: center;
+            width: 100%; height: 100%;
+            background: var(--card);
+        }
+        .demo5 .text{
+            display: grid;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-image: url(Examples/Images/A1.jpg);
+            font-size: 5rem;
+            background-size: 140% 140%;
+            font-weight: 900;
+            line-height: 20px;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            transition: background-position 800ms ease; 
+        }
+        .demo5:hover .text{
+            background-position: right center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>CSS Masking – Real Photo Examples 🎭</h1>
+    <p>All demos use Unsplash photographs so you can see real masking effects in action.</p>
+
+    <div class="grid">
+        <section class="card">
+            <span class="badge">Demo1</span>
+            <h2>Basic mask-image</h2>
+            <p>Shows only a circular center.</p>
+            <div class ="padge">
+                <div class="demo1 bg-photo"></div>
+                <div class="caption">Radial mask</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="badge">Demo1</span>
+            <h2>Basic mask-image</h2>
+            <p>Shows only a circular center.</p>
+            <div class="padge">
+                <div class="demo2 bg-photo"></div>
+                <div class="caption">Hover for effect</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="badge">Demo1</span>
+            <h2>Basic mask-image</h2>
+            <p>Shows only a circular center.</p>
+            <div class="padge">
+                <div class="demo3 bg-photo"></div>
+                <div class="caption">Radial mask</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="badge">Demo1</span>
+            <h2>Basic mask-image</h2>
+            <p>Shows only a circular center.</p>
+            <div class="padge">
+                <div class="demo4 bg-photo">Saddam</div>
+                <div class="caption">Hover for effect</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="badge">Demo1</span>
+            <h2>Basic mask-image</h2>
+            <p>Shows only a circular center.</p>
+            <div class="padge">
+                <div class="demo5 bg-photo">
+                    <div class="text">Saddam</div>
+                </div>
+                <div class="caption">Hover for effect</div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

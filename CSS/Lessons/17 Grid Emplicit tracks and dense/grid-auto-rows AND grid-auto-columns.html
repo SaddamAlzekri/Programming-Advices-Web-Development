@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Emplicit tracks</title>
+    <style>
+        #container {
+            display: grid;
+            grid-template-columns: 100px 100px;
+            grid-auto-flow: row;
+            grid-auto-rows: 30px;
+            gap: 10px;
+        }
+
+        #container2 {
+            display: grid;
+            grid-template-rows: 30px 30px;
+            grid-auto-flow: column;
+            grid-auto-columns: 100px;
+            gap: 10px;
+        }
+
+        #container3 {
+            display: grid;
+            grid-template-rows: 30px 30px;
+            grid-auto-flow: column;
+            /* grid-auto-columns: 100px; */
+            gap: 10px;
+        }
+
+        
+        #container4 {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(2, 80px);
+            grid-auto-flow: column dense;
+            gap: 10px;
+        }
+
+        .item {
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        hr {
+            border: 1px solid black;
+        }
+
+        .item3 {
+            grid-column: span 2;
+        }
+
+        .item6 {
+            grid-row: span 2;
+
+            /* width: 100px; */
+        }
+    </style>
+</head>
+<body>
+    <h1>Grid Emplicit tracks 'grid-auto-flow: row;'</h1>
+    <section id="container">
+        <div class="item">item1</div>
+        <div class="item">item2</div>
+        <div class="item">item3</div>
+        <div class="item">item4</div>
+        <div class="item">item5</div>
+        <div class="item">item6</div>
+    </section>
+
+    <hr>
+
+    <h1>Grid Emplicit tracks 'grid-auto-flow: columns;'</h1>
+    <section id="container2">
+        <div class="item">item1</div>
+        <div class="item">item2</div>
+        <div class="item">item3</div>
+        <div class="item">item4</div>
+        <div class="item">item5</div>
+        <div class="item">item6</div>
+    </section>
+
+        <hr>
+
+    <h1>Placement with grid <span style="color: red;">with</span> 'dense'</h1>
+    <section id="container4">
+        <div class="item">item1</div>
+        <div class="item">item2</div>
+        <div class="item item3">item3</div>
+        <div class="item">item4</div>
+        <div class="item">item5</div>
+        <div class="item item6">item6</div>
+    </section>
+    
+    <hr>
+
+    <h1>Grid Emplicit tracks <span style="color: red;">without</span> 'grid-auto-row/column'</h1>
+    <section id="container3">
+        <div class="item">item1</div>
+        <div class="item">item2</div>
+        <div class="item">item3</div>
+        <div class="item item4">item4</div>
+        <div class="item">item5</div>
+        <div class="item">item6</div>
+    </section>
+
+    
+
+
+
+</body>
+</html>

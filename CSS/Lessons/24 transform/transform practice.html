@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .transform-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .card {
+            padding: 10px;
+            background-color: cornflowerblue;
+        }
+
+        .translate:hover {
+            transform: translatey(-10px);
+            cursor: pointer;
+        }
+        .rotate:hover {
+            transform: rotate(-45deg);
+            cursor: pointer;
+        }
+        
+        .scale:hover {
+            transform: scale(0.8);
+            cursor: pointer;
+        }
+                
+        .skew:hover {
+            transform: skewy(35deg);
+            cursor: pointer;
+        }
+        
+        .combo:hover {
+            transform: skew(35deg, 35deg);
+            cursor: pointer;
+        }
+        .transform3D {
+            display: flex; 
+            align-items: center; 
+            justify-content: center;  
+        }
+        .cards {
+            position: relative;
+            width: 200px;
+            height: 120px;
+            transform-style: preserve-3d;
+            transition: 1.5s;
+            
+        }
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%; 
+            display: flex; align-items: center; justify-content: center;  
+            border: none;
+            backface-visibility: hidden;
+            border-radius: 5px;
+        }
+        .cards:hover {
+            transform: rotatey(180deg);
+        }
+        .front {
+            background-color: indianred;
+        }
+        .back {
+            background-color: green;
+            transform: rotatey(180deg);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>CSS 2D Transform Example</h1>
+    
+    <section class="transform-card">
+        <div class="card translate">Translate</div>
+        <div class="card rotate">Rotate</div>
+        <div class="card scale">Scale</div>
+        <div class="card skew">Skew</div>
+        <div class="card combo">Combo</div>
+    </section>
+
+    <h1>CSS 3D Transform-card Flip</h1>
+
+    <section class="transform3D">
+        <div class="cards">
+            <div class="face front">front face</div>
+            <div class="face back">back face</div>
+        </div>
+    </section>
+</body>
+</html>

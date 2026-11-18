@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response Grid</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+        #container {
+            padding: 10px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 40px 2fr 1fr 1fr;
+            gap: 10px;
+            text-align: center;
+            background-color: rgba(0, 0, 0,0.5);
+        }
+
+        .item {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(5, 218, 218);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Response Grid with fr Units</h1>
+    <section id="container">
+        <div class="item">1</div>
+        <div class="item">item1</div>
+        <div class="item">item2</div>
+        <div class="item">item3</div>
+        <div class="item">2</div>
+        <div class="item">item4</div>
+        <div class="item">item5</div>
+        <div class="item">item6</div>
+    </section>
+</body>
+</html>

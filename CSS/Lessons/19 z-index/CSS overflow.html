@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS overflow</title>
+    <style>
+        .container {
+            margin: 20px;
+            padding: 10px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        .visible {
+            background-color: #9be4e9;
+            /* overflow: visible; */
+        }
+
+        .hidden {
+            background-color: #d79be9;
+            overflow: hidden;
+        }
+        
+        .scroll {
+            background-color: #9be99f;
+            overflow: scroll;
+        }
+
+                
+        .auto {
+            background-color: #e9e49b;
+            overflow: auto;
+        }
+
+                        
+        .clip {
+            background-color: #e2a164;
+            overflow: clip;
+        }
+
+        h2 {
+            margin: 20px;
+            
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>CSS overflow Property Examples</h1>
+
+    <h2>overflow: visible (default)</h2>
+    <div class="container visible">This is some long content that will overflow outside the box. The overflow is visible so you can see it extending beyond the container!.extending beyond the container!. extending beyond</div>
+    
+    <h2>overflow: hidden</h2>
+    <div class="container hidden">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni voluptatum explicabo officiis asperiores reprehenderit, earum quae ratione id, ut aliquam at tenetur non, itaque dolores. Rem dolores debitis voluptatibus fuga?</div>
+    
+
+    <h2>overflow: scroll</h2>
+    <div class="container scroll">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero consectetur expedita recusandae, facilis repudiandae delectus sed voluptate cum repellendus ipsum tempora eveniet rerum ex fugiat doloremque sit omnis! Explicabo, temporibus.</div>
+
+    <h2>overflow: auto</h2>
+    <div class="container auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci similique repudiandae maiores iusto nemo sapiente obcaecati eligendi maxime facilis doloribus. Libero debitis nisi perspiciatis eligendi quia cumque inventore a quo.</div>
+
+    <h2>overflow: clip</h2>
+    <div class="container clip">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum deserunt nulla voluptate dolore, cupiditate praesentium quis laborum esse quam? Libero odit inventore quas, voluptates facere accusantium autem delectus excepturi culpa.</div>
+</body>
+</html>

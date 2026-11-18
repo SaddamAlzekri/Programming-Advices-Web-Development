@@ -1,0 +1,1 @@
+console.log("Hello, Saddam!. I am 19 years old and I am learning TypeScript. Xxx");

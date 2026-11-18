@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="eventbtn" type="button"> Click Event</button>
+    <button id="RemoveEventbtn" type="button">Click For Remove Event</button>
+
+    <script>
+        const eventbtn = document.getElementById("eventbtn");
+        const RemoveEventbtn = document.getElementById("RemoveEventbtn");
+
+        function ShowEventMessage() {
+            alert("Show enentlistener");
+        }
+
+        function RemoveEventMessage() {
+            eventbtn.removeEventListener("click", ShowEventMessage);
+            alert("Remove enentlistener");
+        }
+
+        eventbtn.addEventListener("click", ShowEventMessage);
+        RemoveEventbtn.addEventListener("click", RemoveEventMessage);
+
+    </script>
+</body>
+</html>

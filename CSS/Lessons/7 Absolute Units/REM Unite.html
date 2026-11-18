@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem Unit</title>
+
+    <style>
+        #container {
+            padding: 1.5%;
+            border-radius: 10px;
+            background-color: lightblue;
+            font-size: 16px;
+        }
+
+        #box1 {
+            padding: 1.5%;
+            margin: 1.5%;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            background-color: aqua;
+        }
+        
+        #box2 {
+            padding: 1.5%;
+            margin: 1.5%;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            background-color: rgb(10, 175, 240);
+        }
+    </style>
+</head>
+<body>
+    <h1>REM compounding problem demo</h1>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias.</p>
+
+    <div id="container">
+        Parent text is 16px.
+        <div id="box1">
+            Parent text is 24px (1.5em X 16px).
+            <div id="box2">
+                Child text is 24px(1.5em X 16px).
+            </div>
+        </div>
+    </div>
+</body>
+</html>

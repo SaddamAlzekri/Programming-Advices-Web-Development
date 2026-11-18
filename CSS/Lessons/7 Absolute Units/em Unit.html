@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>em Unit</title>
+
+    <style>
+        #container {
+            padding: 1.5%;
+            border-radius: 10px;
+            background-color: lightblue;
+            font-size: 16px;
+        }
+
+        #box1 {
+            padding: 1.5%;
+            margin: 1.5%;
+            border-radius: 10px;
+            font-size: 1.5em;
+            background-color: aqua;
+        }
+        
+        #box2 {
+            padding: 1.5%;
+            margin: 1.5%;
+            border-radius: 10px;
+            font-size: 1.5em;
+            background-color: rgb(10, 175, 240);
+        }
+    </style>
+</head>
+<body>
+    <h1>EM compounding problem demo</h1>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias.</p>
+
+    <div id="container">
+        Parent text is 16px.
+        <div id="box1">
+            Parent text is 24px (1.5em X 16px).
+            <div id="box2">
+                Child text is 24px(1.5em X 25px).
+            </div>
+        </div>
+    </div>
+</body>
+</html>

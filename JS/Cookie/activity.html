@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+       <style>
+    *, *::after, *::before { box-sizing: border-box;}
+    body {
+        background: lightgray;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .card {
+        margin: 0 auto;
+        width: 500px;
+        height: fit-content;
+        padding: 20px;
+        background-color: white;
+        display: grid;
+        gap: 10px;
+        border-radius: 5px;
+    }
+    h1,p {
+        text-align: center;
+    }
+    #loginSection {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    #wellcomMessage {
+        display: none;
+    }
+    button {
+        background: blue;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        height: 30px;
+       transition: 0.3s ease;
+    }
+    button:hover {
+        background: #0056b3;
+        transform: scale(1.03);
+    }
+    input {
+        height: 40px;
+        border-radius: 10px;
+    }
+   </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Login Simulation (Cookies)</h1>
+        <div id="loginSection">
+            <input id="userNameInput" type="text" placeholder="Enter your username..">
+            <button type="button" onclick="login()"><strong>Login</strong></button>
+        </div>
+
+        <div id="wellcomMessage">
+            <p id="message">Welcome back</p>
+            <button type="button" onclick="logout()"><strong>Logout</strong></button>
+        </div>
+    </div>
+
+    <script>
+
+        const loginSection  = document.getElementById("loginSection");
+        const wellcomMessage  = document.getElementById("wellcomMessage");
+        const message = document.getElementById("message");
+
+        function setCookie( key, value, days) {
+            const expiration = new Date();
+            expiration.setDate(expiration.getDate() + days);
+
+            document.cookie = key + "=" + value + "; expires=" +
+            expiration.toUTCString() + "; path=/";
+        }
+
+        function getCookie(cookieName) {
+            const cookies = document.cookie.split(";");
+            for (let c of cookies) {
+                c = c.trim();
+                if (c.startsWith(cookieName + "=")) {
+                    return c.substring(cookieName.length + 1);
+                }
+            }
+            return null;
+        }
+      
+        function login() {
+            const username = document.getElementById("userNameInput").value;
+
+            setCookie("username", username, 7);
+
+            alert("set cookie is Done..");
+            ShowWellcomMessage();
+        }
+        
+        function ShowWellcomMessage() {
+            
+            const username = getCookie("username");
+
+            if(username !== null){
+                message.textContent = "Welcome back, " + username;
+                loginSection.style.display = "none";
+                wellcomMessage.style.display = "grid";
+            }else {
+                message.textContent = "";
+                loginSection.style.display = "grid";
+                wellcomMessage.style.display = "none"
+            }
+        }
+        
+        window.onload = function () {
+            ShowWellcomMessage();
+        }
+    
+        function DeleteCookie() {
+            const expiration = new Date();
+            expiration.setDate(expiration.getDate() - 1000);
+
+        document.cookie = "username=; expires=" +
+          expiration.toUTCString() + "; path=/";
+        }
+
+        function logout() {
+            DeleteCookie();
+
+            message.textContent = "";
+            loginSection.style.display = "grid";
+            wellcomMessage.style.display = "none";
+
+            alert("Delete Done!"); 
+            document.getElementById("userNameInput").value = "";
+        }
+         
+    </script>
+</body>
+</html>

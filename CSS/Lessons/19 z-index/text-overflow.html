@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text-overflow</title>
+    <style>
+        .container {
+            width: 200px;
+            border: 1px solid black;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .visible {
+            overflow: visible;
+            white-space: normal;
+            background-color: #dd8686;
+        }
+
+        .hidden-textoverflow {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+        }
+
+        .clip {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: clip;
+            text-overflow: ellipsis;
+            background: #e9fbe9;
+            height: 3.9em; /* 3 lines x line-height (1.3em) */
+            line-height: 1.3em;
+        }
+
+        .Tooltip {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        
+        .clipped {
+            overflow: clip;
+            white-space: nowrap;
+            text-overflow: clip;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Text Overflow and Truncation Techniques</h1>
+    <h2>No Truncation (default, text wraps & all is visible)</h2>
+    <div class="container visible">This is a very long sentence intended to demonstrate how no truncation occurs and the text simply wraps naturally onto multiple lines as needed in the container.</div>
+
+    <h2>Single-Line Ellipsis</h2>
+    <div class="container hidden-textoverflow">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, reiciendis odit?</div>
+
+    <h2>Multi-Line Clamp (max 3 lines, then ellipsis)</h2>
+    <div class="container clip">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam hic blanditiis, dolorem nulla cum eos molestias possimus, dolorum atque facilis odit ad sint ipsum natus voluptas ipsam iusto aspernatur cupiditate.</div>
+
+    <h2>Escaped Tooltip vs Clipped</h2>
+    <div class="container Tooltip">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam hic blanditiis, dolorem nulla cum eos molestias possimus, dolorum atque facilis odit ad sint ipsum natus voluptas ipsam iusto aspernatur cupiditate.</div>
+    <div class="container clipped">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam hic blanditiis, dolorem nulla cum eos molestias possimus, dolorum atque facilis odit ad sint ipsum natus voluptas ipsam iusto aspernatur cupiditate.</div>
+</body>
+</html>

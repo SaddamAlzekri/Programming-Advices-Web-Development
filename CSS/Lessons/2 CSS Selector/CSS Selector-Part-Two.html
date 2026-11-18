@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector-Part-Two</title>
+
+    <style>
+        h1 {
+            text-align: center;
+            color: blue;
+        }
+        p::first-line {
+            font-weight: bold;
+        }
+
+        .light {
+            background-color: yellow;
+        }
+
+        #Info {
+            border: 2px dashed green;
+            padding: 10px;
+        }
+
+        div span {
+            font-style: italic;
+            color: purple;
+        }
+
+        #Container > p {
+            border: 2px solid blue;
+            padding: 5px;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        h2 + p {
+            color: red;
+        }
+
+        h2 ~ p {
+            font-size: 14px;
+        }
+
+        #text-box {
+        background-color: blue;    /* Blue background */
+        color: white;              /* White text */
+        padding: 10px;             /* Padding for the button */
+        border: none;              /* No border */
+        text-align: center;        /* Centered text */
+        display: inline-block;  
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Lorem, ipsum dolor.</h1>
+    <p>Lorem ipsumtrum atque quam ullam blanditiis sequi repudiandae ducimus ipsum! ipsum, dolor sit amet consectetur adipisicing elit. Porro commodi aliquam ex consequatur.</p>
+    <p class="light">Lorem ipsum dolor sit amet consectetur adipisicing elit. A!</p>
+
+    <div id="Info">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum doloribus dicta quaerat dolore laborum adipisci?</p>
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati iusto accusamus provident.</span>
+    </div>
+
+    <div id="Container">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim illum molestias ipsum rerum.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+
+    <h2>Lorem, ipsum.</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur laboriosam vitae accusantium? Quibusdam, nemo sint.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quibusdam id at, molestias cupiditate aperiam?</p>
+
+    <a href="#">Hover over this link to see the effect</a>
+    <br><br>
+
+    <div id="text-box">Lorem ipsum dolor sit amet consectetur.</div>
+</body>
+</html>

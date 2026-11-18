@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="counter">5</h1>
+
+    <script>
+        let num = 5;
+        let counter = document.getElementById("counter");
+
+        counter.textContent = num;
+
+        let counterDown = setInterval( () => {
+            num--;
+            counter.textContent = num;
+            if(num === 0) {
+                clearInterval(counterDown);
+                setTimeout(() => {alert("Time's up");},1000);
+            }
+        } , 1000)
+
+    </script>
+</body>
+</html>

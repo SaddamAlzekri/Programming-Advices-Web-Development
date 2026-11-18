@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            padding: 0px 10px 10px;
+            height: fit-content;
+            margin: 0 auto;
+            background-color: lightblue;
+            border-radius: 5px;
+        }
+        input {
+            margin: 0;
+            width: 200px;
+            height: 30px;
+            border-radius: 10px;
+        }
+        .containerbtn {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 0px;
+        }
+        button {
+           width: fit-content;
+           background-color: rgb(10, 110, 241);
+           color: white;
+           border: none;
+           padding: 5px;
+           border-radius: 5px;
+           margin: 0px 20px 5px 0px;
+           transition: transform 1s ease;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        #output {
+            background: rgb(235, 233, 233);
+            color: black;
+            white-space: pre-line;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <h1>Mini Profile Saver</h1>
+        <label for="nameInput">Name</label><br>
+        <input id="nameInput" type="text" placeholder="Enter your name!"><br><br>
+
+        <label for="emailInput">Email</label><br>
+        <input id="emailInput" type="text" placeholder="Enter your email!"><br><br>
+
+        <label for="colorInput">Favorite Color</label><br>
+        <input id="colorInput" type="text" placeholder="Enter your favorite color!"><br><br>
+
+        <div class="containerbtn">
+            <button type="button" onclick="SaveInLocalStorage()">Save in localStorage</button>
+            <button type="button" onclick="LoadFromLocalStorage()">Load from localStorage</button>
+            <button type="button" onclick="DeleteEmail()">Delete Email localStorage</button>
+            <button type="button" onclick="ClearAllLocalStorage()">Clear All localStorage</button>
+        </div>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function SaveInLocalStorage() {
+            const name = document.getElementById("nameInput").value;
+            const email = document.getElementById("emailInput").value;
+            const favoriteColor = document.getElementById("colorInput").value;
+            
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
+            localStorage.setItem("favoriteColor", favoriteColor);
+            alert("Insert localStorage Done");
+        }
+
+        function LoadFromLocalStorage() {
+            const name = localStorage.getItem("name");
+            const email = localStorage.getItem("email");
+            const favoriteColor = localStorage.getItem("favoriteColor");
+
+            const text = "Loaded from localStorage:\n" + "Name: " + (name ?? "No Found") + "\n"
+            + "Email: " + (email ?? "No Found") + "\n" + "favorite Color: " +
+            (favoriteColor ?? "No Found");
+
+            document.getElementById("output").textContent = text;
+            document.getElementById("output").style.padding = "10px";
+
+        }
+
+        function DeleteEmail() {
+            localStorage.removeItem("email");
+            LoadFromLocalStorage();
+        }
+        function ClearAllLocalStorage() {
+            localStorage.clear();
+            LoadFromLocalStorage();
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image sprit</title>
+    <style>
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .facebook {
+            background-image: url(Images/image_sprites.png);
+            background-position: 0 0;
+            width: 50px;
+            height: 50px;
+            transform-style: preserve-3d;
+            border-radius: 5px;
+            transition: all 400ms ease;
+        }
+        .facebook:hover {
+            background-image: url(Images/image_sprites.png);
+            background-position: 0px -65px;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-90deg);
+        }
+
+        .wifi {
+            background-image: url(Images/image_sprites.png);
+            background-position: -57px 0px;
+            width: 50px;
+            height: 50px;
+            transform-style: preserve-3d;
+            border-radius: 5px;
+            transition: all 400ms ease;
+        }
+
+        .wifi:hover {
+            background-image: url(Images/image_sprites.png);
+            background-position: -57px -64px;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-90deg);
+        }
+
+        .linkedin {
+            background-image: url(Images/image_sprites.png);
+            background-position: -113px 0px;
+            width: 50px;
+            height: 50px;
+            transform-style: preserve-3d;
+            border-radius: 5px;
+            transition: all 400ms ease;
+        }
+        
+        .linkedin:hover {
+            background-image: url(Images/image_sprites.png);
+            background-position: -113px -64px;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-90deg);
+        }
+        .pen {
+            background-image: url(Images/image_sprites.png);
+            background-position: -171px 0px;
+            width: 50px;
+            height: 50px;
+            transform-style: preserve-3d;
+            border-radius: 5px;
+            transition: all 400ms ease;
+        }
+        .pen:hover {
+            background-image: url(Images/image_sprites.png);
+            background-position: -171px -64px;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-90deg);
+        }
+        .share {
+            background-image: url(Images/image_sprites.png);
+            background-position: -226px 0px;
+            width: 50px;
+            height: 50px;
+            transform-style: preserve-3d;
+            border-radius: 5px;
+            transition: all 400ms ease;
+        }
+        .share:hover {
+            background-image: url(Images/image_sprites.png);
+            background-position: -226px -64px;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-90deg);
+        }
+        .youtube {
+            background-image: url(Images/image_sprites.png);
+            background-position: -282px 0px;
+            width: 50px;
+            height: 50px;
+            transform-style: preserve-3d;
+            border-radius: 5px;
+            transition: all 400ms ease;
+        }
+        .youtube:hover {
+            background-image: url(Images/image_sprites.png);
+            background-position: -282px -64px;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-90deg);
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>image sprit</h1>
+
+    <section>
+        <div class="facebook">
+        </div>
+
+        <div class="wifi">
+        </div>
+        
+        <div class="linkedin">
+        </div>
+
+        <div class="pen">
+        </div>
+
+        <div class="share">
+        </div>
+        
+        <div class="youtube">
+        </div>
+    </section>
+
+</body>
+</html>

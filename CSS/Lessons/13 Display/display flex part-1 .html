@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display flex</title>
+
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        span {
+            font-size: 20px;
+        }
+
+        #container-one {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background: rgb(220, 226, 230);
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .item {
+            background-color: lightblue;
+            padding: 1rem;
+            flex: 1 1 120px;
+            border-radius: 5px;
+        }
+
+        hr {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+
+        #container-two {
+            margin-top: 20px;
+            background: rgb(233, 164, 221);
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>CSS <span>display: flex</span> Demo</h1>
+
+    <h2>Responsive flex container</h2>
+
+    <section id="container-one">
+        <div class="item">idtem1</div>
+        <div class="item">idtem2</div>
+        <div class="item">idtem3</div>
+        <div class="item">idtem4</div>
+        <div class="item">idtem5</div>
+    </section>
+    
+    <hr>
+
+    <section id="container-two">
+        <div class="item">idtem1</div>
+        <div class="item">idtem2</div>
+        <div class="item">idtem3</div>
+        <div class="item">idtem4</div>
+        <div class="item">idtem5</div>
+    </section>
+
+    <hr>
+
+</body>
+</html>

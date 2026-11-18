@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: grid;
+            align-content: center;
+            justify-content: center;
+            margin: 0;
+            height: 100vh;
+        }
+        #button {
+            width: 250px;
+            height: 150px;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+            border-radius: 10px;
+        }
+        span {
+            text-align: center;
+        }
+        #startBtn {
+            width: 60px;
+            height: 25px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="button"> 
+        <span id="startTasbeeh"> ابدأ التسبيح</span>
+        <button id="startBtn" type="button" onclick="Tasbeeh();">ابدأ</button>
+    </div>
+
+    <script>
+        let tabeehCounter = 0;
+        let tasbeeh1 = "ابدأ التسبيح";
+        let tasbeeh2 = document.getElementById("startTasbeeh");
+
+        tasbeeh2.textContent = tasbeeh1;
+
+        function Tasbeeh() {
+            let counter = 1;
+            const btn = document.getElementById("startBtn");
+            let funcTasbeeh = setInterval(() => {
+            
+            btn.disabled = true;
+            if(counter === 1)
+            {
+                tabeehCounter++;
+                tasbeeh2.textContent = "سبحان الله " + tabeehCounter;
+                if(tabeehCounter === 33) {counter++; tabeehCounter = 0;}
+            }
+            else if(counter === 2)
+            {
+                tabeehCounter++;
+                tasbeeh2.textContent = "الحمدالله " + tabeehCounter;
+                let container = document.getElementById("button");
+                container.style.backgroundColor = "black";
+                document.body.style.color = "white";
+                if(tabeehCounter === 33) {counter++; tabeehCounter = 0;}
+            }else if(counter === 3)
+            {
+                tabeehCounter++;
+                tasbeeh2.textContent = "الله أكبر " + tabeehCounter;
+                if(tabeehCounter === 33) {counter++; tabeehCounter = 0;}
+            }
+            else if(counter == 4)
+            {
+                setTimeout(() => {tasbeeh2.textContent = " لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شئ قدير"; },1000);
+                setTimeout(() => {btn.disabled = false; tasbeeh2.textContent = tasbeeh1;},3000);
+                clearInterval(funcTasbeeh);
+            }
+            }, 1000);
+            
+        }
+
+    </script>
+</body>
+</html>

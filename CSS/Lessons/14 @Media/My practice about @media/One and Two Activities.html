@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Activity</title>
+    <style>
+
+        body {
+            font-size: 1rem;
+        }
+        #container {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(121, 156, 117);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .item {
+            background-color: aqua;
+            border-radius: 10px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1 1 calc(25% - 1rem);
+        }
+
+        @media screen and (max-width: 950px) {
+            .item {
+                flex: 1 1 calc(33.333% - 1rem);
+                background-color: rgb(88, 88, 207);
+            }
+            
+        }
+
+        
+        @media screen and (max-width: 550px) {
+            .item {
+                flex: 1 1 calc(50% - 1rem);
+                background-color: rgb(167, 78, 78);
+            }
+            
+        }
+
+        @media screen and (max-width: 400px) {
+            .item {
+                flex: 1 1 calc(100% - 1rem);
+                background-color: rgb(179, 61, 153);
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Resize all of device</h1>
+
+    <section id="container">
+        <div class="item">item1</div>
+        <div class="item">item2</div>
+        <div class="item">item3</div>
+        <div class="item">item4</div>
+        <div class="item">item5</div>
+        <div class="item">item6</div>
+        <div class="item">item7</div>
+        <div class="item">item8</div>
+        <div class="item">item9</div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - CV</title>
+
+    <style>
+        :root {
+            --bg:   #8e9094;
+            --sidebar: #0ea5a5;  
+            --bg-cards : white; 
+            --accentA: #7c3aed; 
+            --accentB: #14b8a6; 
+            --card: #ffffff;         /* card background */
+            --line: #e5e7f0; 
+            --space-1: 10px;
+            --space-2: 15px;
+            --raduis: 10px;
+        }
+        *, *::after, *::before {
+            box-sizing: border-box;
+        }
+        .grid {
+            background: var(--bg);
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .hero {
+            position: sticky; top: 0; z-index: 100;
+            display: grid; justify-content: start;
+            max-width: 100%;
+            background: var(--sidebar);
+            padding: var(--space-2);
+        }
+        .hero-inner {
+            display: grid; 
+            grid-template-columns: 120px 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+        .avatar {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 1px solid black;
+            background: gray;
+        }
+        .avatar img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+        }
+        .body-content {
+            background: var(--bg);
+            padding: 20px;
+        }
+        .about {
+            max-width: 1000px;
+            padding: var(--space-2) var(--space-2);
+            background: var(--bg-cards);
+            border-radius: 10px;
+        }
+        .body-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .skills-title {
+            max-width: 1000px;
+            padding: var(--space-2) var(--space-2);
+            background: var(--bg-cards);
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+
+        }
+        .skill p{
+            text-align: center;
+        }
+        .donut {
+             --size: 120px;
+             --track: #e5e7f0; 
+             --val: 75;  
+            width: var(--size);
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background: conic-gradient(
+            color-mix(in srgb, var(--accentA) 60%, var(--accentB) 40%) calc(var(--val) * 1%),
+            var(--track) 0);
+             display: grid; place-items: center; margin-inline: auto; position: relative; justify-items: center;
+        }
+        .donut::after {
+            content: "";
+            width: calc(var(--size) - 24px);
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--line);
+    }
+    .donut > span {
+      /* Numeric label sits above the hole */
+      position: absolute; font-weight: 700;
+    }
+    @media(max-width:1000px)
+    {
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 10px;
+        }
+        .donut {
+            display: grid;
+            place-items: center; 
+            margin-inline: auto; 
+            position: relative; 
+            justify-content: center;
+        }
+        .skill p{
+            text-align: center;
+        }
+    }
+    .experience, .Selected-Projects, .Education {
+        max-width: 1000px;
+        padding: var(--space-2) var(--space-2);
+        background: var(--bg-cards);
+        border-radius: 10px;
+        
+    }
+    details {
+        border: 1px solid var(--line);
+        padding: var(--space-1);
+        border-radius: var(--space-1);
+    }
+    details:has(summary:focus) {
+        outline: 2px solid rgb(2, 233, 250);
+    }
+    .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    @media (max-width:650px){
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+    }
+    }
+    .proj {
+        color: rgb(53, 52, 52);
+        text-decoration: none;
+    }
+    .proj:hover {
+        color: rgb(53, 52, 52);
+        text-decoration: underline;
+    }
+
+    .projects {
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0.5px 0.5px 15px 2px black;
+    }
+    .side-bar {
+      position: fixed; left: 20px; top: 50%;
+      transform: translateY(-50%);
+      display: grid; gap: 10px;
+    }
+    .top-bar {
+        display: none;
+    }
+    @media(max-width:700px)
+    {
+        .side-bar{
+            display: none;
+        }
+        .top-bar {
+            display: inline-flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 20px;
+        }
+        .pill {
+            padding: 5px;
+            border-radius: var(--space-1);
+            background: white;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+       }
+    }
+    .side-bar a {
+        width: 12px; height: 12px; border-radius: 50%;
+        background: conic-gradient(#e74c3c, #f39c12, #f1c40f, #2ecc71, #3498db, #9b59b6, #e74c3c);
+        border: 1px solid var(--line);
+        display: block;
+    }
+    #about:target      ~ .side-bar a[href="#about"],
+    #skills-title:target     ~ .side-bar a[href="#skills-title"],
+    #experience:target ~ .side-bar a[href="#experience"],
+    #Selected-Projects:target   ~ .side-bar a[href="#Selected-Projects"],
+    #education:target  ~ .side-bar a[href="#education"] {
+      background: conic-gradient(#e74c3c, #f39c12, #f1c40f, #2ecc71, #3498db, #9b59b6, #e74c3c);
+      outline: 2px solid color-mix(in srgb, var(--accentA) 40%, var(--accentB) 60%);
+      outline-offset: 2px;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <header class="hero" aria-label="title">
+         <div class="hero-inner" aria-label="all of title">
+            <div class="avatar" aria-label="image of avatar">
+                <img src="../personalImage.jpg" alt="Practice about cv.">
+            </div>
+
+            <div class="hero-title">
+                <h1>YOUR NAME</h1>
+                <p>Front-End Developer • UI Engineer • Design Systems</p>
+
+                <nav class="top-bar">
+                    <a class="pill" href="#about">About</a>
+                    <a class="pill" href="#skills-title">Skills</a>
+                    <a class="pill" href="#experience">Experience</a>
+                    <a class="pill" href="#Selected-Projects">Projects</a>
+                    <a class="pill" href="#education">Education</a>
+                </nav>
+            </div>
+        </div>
+        </header>
+
+        <main class="body-content">
+            <section id="about" class="about">
+                <h1>About</h1>
+                <p>Impact-driven builder of fast, accessible UIs. I care about design tokens, clean semantics, and performance budgets.</p>
+                <ul>
+                    <li><strong>Location: </strong>Amman, Jordan</li>
+                    <li><strong>Languages: </strong>Arabic (Native), English (Professional)</li>
+                    <li><strong>Contact: </strong>you@example.com • github.com/your-username</li>
+                </ul>
+            </section>
+
+            <section id="skills-title" class="skills-title">
+                <h1>Skills</h1>
+                <p>CSS donuts below are pure CSS (conic-gradient). Set values with --val.</p>
+
+                <div class="skills">
+                    <div role="listitem" class="skill">
+                        <div class="donut" style="--val: 92"><span>92%</span></div>
+                        <p><strong>Semantic HTML</strong><br><span class="muted">Landmarks, a11y, structure</span></p>
+                    </div>
+
+                    <div class="skill">
+                        <div class="donut" style="--val: 88"><span>88%</span></div>
+                        <p><strong>Modern CSS</strong><br><span class="muted">Grid, Flex, custom props</span></p>
+                    </div>
+
+                    <div class="skill">
+                        <div class="donut" style="--val: 76"><span>76%</span></div>
+                        <p><strong>Accessibility</strong><br><span class="muted">WCAG, keyboard, color</span></p>
+                    </div>
+
+                    <div class="skill">
+                        <div class="donut" style="--val: 80"><span>80%</span></div>
+                        <p><strong>Tooling</strong><br><span class="muted">Git, GitHub, DevTools</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="experience">
+                <article class="detail-grid">
+                    <details>
+                        <summary>
+                            <strong>Senior Front-End Developer </strong>• Tech Co • 2023—Present
+                        </summary>
+                        <ul>
+                            <li>Owned component library; cut CSS by 30% via design tokens.</li>
+                            <li>Shipped a11y improvements to WCAG 2.1 AA with audits and docs.</li>
+                        </ul>
+                    </details>
+
+                    <details>
+                        <summary>
+                            <strong>Web Designer </strong>• Creative Studio • 2020—2023
+                        </summary>
+                        <ul>
+                            <li>Prototyped 12 marketing sites; established shared styles.</li>
+                            <li>Delivered semantic handoffs; boosted dev velocity.</li>
+                        </ul>
+                    </details>
+                </article>
+            </section>
+
+            <section id="Selected-Projects" class="Selected-Projects">
+                <h1>Selected Projects</h1>
+                <article class="cards">
+                    <div class="projects">
+                        <a class="proj" href="#" aria-label="Portfolio Website">
+                            <h3>Portfolio Website</h3>
+                            <p class="muted">Static site, Lighthouse 95+, optimized images & fonts.</p>
+                        </a>
+                    </div>
+
+                    <div class="projects">
+                        <a class="proj" href="#" aria-label="Design System Demo">
+                            <h3>Design System Demo</h3>
+                            <p class="muted">Token-based theming; documented components.</p>
+                        </a>
+                    </div>
+
+                    <div class="projects">
+
+                        <a class="proj" href="#" aria-label="Perf Budgets Kit">
+                            <h3>Perf Budgets Kit</h3>
+                            <p class="muted">Starter budgets and checklists to keep sites fast.</p>
+                        </a>
+                    </div>
+                </article>
+            </section>
+
+            <section id="education" class="Education">
+                <article class="card" aria-labelledby="edu-title">
+                    <h2 id="edu-title">Education</h2>
+                    <p>
+                        <strong>B.Sc. in Computer Science</strong><br/>
+                        University Name • 2016—2020
+                    </p>
+                    <ul class="clean muted">
+                        <li>Graduated with Honors</li>
+                        <li>Key courses: HCI, Data Structures, Databases</li>
+                    </ul>
+                </article>
+            </section>
+
+            <nav class="side-bar">
+                <a class="side-pill" href="#about"></a>
+                <a class="side-pill" href="#skills-title"></a>
+                <a class="side-pill" href="#experience"></a>
+                <a class="side-pill" href="#Selected-Projects"></a>
+                <a class="side-pill" href="#education"></a>
+            </nav>
+        </main>
+    </div>
+</body>
+</html>

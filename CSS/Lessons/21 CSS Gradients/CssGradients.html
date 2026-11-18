@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Gradients</title>
+    <style>
+
+        .header {
+            font-size: 20px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .line {
+            width: 30%;
+            height: 3px;
+            background: linear-gradient(to right , blue ,red , orange);
+            margin: 0px 10px 0px;
+        }
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 60px;
+            background-color: rgb(24, 12, 202);
+        }
+
+        h1 {
+            margin: 0px 10px 0px;
+            background: linear-gradient(to right ,yellow, blue ,red , rgb(240, 5, 122), rgb(9, 255, 0));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cards {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto auto auto;
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid white;
+            border-radius: 5px;
+            padding-top: 5px;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+        .card-numaric {
+            padding: 5px;
+            background-color: red;
+            border-radius: 5px;
+            margin:0px 20px 0px 10px;
+        }
+
+        .content1 {
+            height: 130px;
+            margin: 0px 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right , blue ,red , orange);
+        }
+
+        .content2 {
+            height: 130px;
+            margin: 0px 10px 10px;
+            border:  none;
+            border-radius: 5px;
+            background: Repeating-linear-gradient(to right ,#2ecc71 0px, #2ecc71 20px, #16a085 20px, #16a085 40px);
+        }
+        
+        .content3 {
+            height: 130px;
+            margin: 0px 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background: radial-gradient(circle , #f1c40f ,red , #8e44ad);
+        }
+        
+        .content4 {
+            height: 130px;
+            margin: 0px 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background: Repeating-radial-gradient(circle , #34db66 0px,#34db66 15px, #2980b9 15px, #2980b9 30px);
+        }
+        
+        .content5 {
+            height: 130px;
+            margin: 0px 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background: conic-gradient(#e74c3c, #f39c12, #f1c40f, #2ecc71, #3498db, #9b59b6, #e74c3c);
+        }
+        
+        .content6 {
+            height: 130px;
+            margin: 0px 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background: Repeating-radial-gradient(
+                circle,
+                #e74c3c 0px,
+                #f39c12 20px,
+                #f10f8b 40px, 
+                #2ecc71 60px);
+        }
+
+    </style>
+</head>
+<body style="background-color: black; color: white;">
+    <header class="header">
+        <div class="line"></div>
+        <div class="dot"></div>
+        <h1>CSS Gradients</h1>
+        <div class="dot"></div>
+        <div class="line"></div>
+    </header>
+
+    <section class="cards">
+        <div class="card">
+            <div class="title">
+                <div class="card-numaric">1</div>
+                <h4>Linear gradient</h4>
+            </div>
+            <div class="content1"></div>
+        </div>
+
+        <div class="card">
+            <div class="title">
+                <div class="card-numaric" style="background-color: #07f0aa;">2</div>
+                <h4>Repeating Linear gradient</h4>
+            </div>
+            <div class="content2"></div>
+        </div>
+        
+        <div class="card">
+            <div class="title">
+                <div class="card-numaric" style="background-color: #1462d8;">3</div>
+                <h4>Redial Gradient</h4>
+            </div>
+            <div class="content3"></div>
+        </div>
+
+                <div class="card">
+            <div class="title">
+                <div class="card-numaric" style="background-color: #f50474;">4</div>
+                <h4>Repeating Redial Gradient</h4>
+            </div>
+            <div class="content4"></div>
+        </div>
+
+        <div class="card">
+            <div class="title">
+                <div class="card-numaric" style="background-color: #07ec12;">5</div>
+                <h4>cornic gradient</h4>
+            </div>
+            <div class="content5"></div>
+        </div>
+        
+        <div class="card">
+            <div class="title">
+                <div class="card-numaric" style="background-color: #8e44ad;">6</div>
+                <h4>Repeating radial gradient</h4>
+            </div>
+            <div class="content6"></div>
+        </div>
+    </section>
+</body>
+</html>

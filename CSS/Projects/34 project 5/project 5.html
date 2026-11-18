@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project 5</title>
+    <style>
+        :root {
+            --bg:       #f7f7fb;          /* Page background (paper-like) */
+            --ink:      #0f172a;          /* Primary text color */
+            --muted:    #6b7280;          /* Secondary/quiet text */
+            --card:     #ffffff;          /* Surfaces (cards/sections) */
+            --line:     #e5e7eb;          /* Hairline borders/dividers */
+            --accent:   #ef4444;          /* Accent A (red) for highlights */
+            --accent-2: #3b82f6;          /* Accent B (blue) for highlights */
+
+      /* ---- Shape & elevation ---------------------------------------- */
+            --radius:   18px;             /* Global corner rounding for cards */
+            --shadow:   0 10px 28px rgba(2, 6, 23, .08); /* Soft card shadow */
+
+      /* ---- Spacing scale (vertical rhythm) -------------------------- */
+            --space-1:  6px;              /* XS spacing */
+            --space-2:  10px;             /* S  spacing */
+            --space-3:  14px;             /* M  spacing */
+            --space-4:  20px;             /* L  spacing */
+            --space-5:  28px;             /* XL spacing */
+            --space-6:  40px;             /* XXL spacing */
+
+      /* ---- Layout caps ---------------------------------------------- */
+            --frame:    1180px;           /* Max page width (readability) */
+            --rail-w:   120px; 
+        }
+        @media(prefers-color-scheme: dark)
+        {
+            :root {
+                --bg:    #0b1220;  /* Dark canvas */
+                --ink:   #e5e7eb;  /* Light text on dark */
+                --muted: #9aa3b2;  /* Softer light text */
+                --card:  #0f172a;  /* Dark surface */
+                --line:  #1f2a44;  /* Dark-mode divider */
+                --shadow: none;    /* Avoid heavy glow on dark */
+            }
+        }
+
+        *, *::after, *::before {box-sizing: border-box;}
+        body {
+            margin: 0;
+            font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            color: var(--accent-2);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .wrap {
+            margin: var(--space-6) var(--space-4) var(--space-6);
+        }
+        .side {
+            display: grid; 
+            grid-template-columns: 200px 1fr;
+            gap: var(--space-4);
+            align-items: center; justify-content: end;
+            background: linear-gradient(135deg,
+                color-mix(in srgb, var(--accent) 10%, #0000),
+                color-mix(in srgb, var(--accent-2) 10%, #0000)), var(--card);
+            border-radius: var(--space-3);
+            padding: var(--space-3);
+        }
+        .avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: var(--space-2);
+            margin-inline: auto;
+        }
+        .avatar img{
+            width: 100%;
+            height: 100%;
+            border-radius: var(--space-2);
+        }
+        .pills {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-4); 
+        }
+        .pill {
+            background: var(--card);
+            padding: var(--space-1);
+            border-radius: var(--space-4);
+        }
+        .cv-title { border-left: 4px solid red; padding-left: var(--space-4);}
+        .cv-title h1{margin: 0;}
+        .cv-title p{margin: 0 0 var(--space-2) 0;}
+
+        @media(max-width:650px){
+            .side { 
+                display: grid;  padding:var(--space-4);
+                grid-template-columns: 1fr; 
+                gap: var(--space-2);
+                justify-content: center;
+            }
+            .title {
+                text-align: center;
+            }
+            .cv-title { border-left: none;}
+        }
+        .main-content {
+            display: grid; 
+            grid-template-columns: 130px 1fr;
+            gap: var(--space-3);
+        }
+        @media (max-width: 650px)
+        {
+            .side-bar {display: none;}
+            .main-content {
+            display: grid; 
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+        }
+        .year {
+            border-left: 2px solid var(--line);
+            padding-left: var(--space-2);
+        }
+        .dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: red;
+            margin-right: var(--space-2);
+        }
+        .nav-year {
+            color: black;
+            font-weight: 800;
+        }
+        .nav {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+
+        .nav a{
+            display: block;
+            color: black;
+        }
+        .section {
+            margin-top: var(--space-4);
+            border-radius: var(--space-3);
+            background: var(--card);
+            padding: var(--space-3);
+            color: var(--muted);
+        }
+        .section h1 {
+            margin-top: 0;
+        }
+        .section .paragraph {
+            margin-top: 0;
+            line-height: 1.5;
+            font-size: 18px;
+            border-left: 4px solid var(--accent-2);
+            padding-left: var(--space-2);
+        }
+        #y2025 {
+            border-bottom: 1px dashed var(--line);
+        }
+        #y2024 {
+            border-bottom: 1px dashed var(--line);
+        }
+        #y2023 {
+            border-bottom: 1px dashed var(--line);
+        }
+        .role {
+            font-weight: 800; color: black;
+        }
+        .capsules {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+        }
+        .capsule {
+            padding: var(--space-1);
+            border: 1px solid var(--line);
+            border-radius: var(--space-4);
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-3);
+        }
+        @media (max-width:650px) {
+            .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+        }
+        .card {
+            border: 1px solid var(--line);
+            padding: var(--space-2);
+            border-radius: var(--radius);
+        }
+        .card-title {
+            font-weight: 700;
+        }
+        .edu-degree, .edu-years, .edu-institution {color: black;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <head id="top"  class="cv-head">
+            <div class="side" aria-label="personal image">
+                <div class="avatar">
+                    <img src="../personalImage.jpg" alt="personal image">
+                </div>
+
+                <div class="title">
+                    <div class="cv-title">
+                        <h1>YOUR NAME</h1>
+                        <p>Front-End Developer • UI Engineer • Design Systems</p>
+                    </div>
+
+                    <div class="pills">
+                        <span class="pill">Amman, Jordan</span>
+                        <span class="pill">you@example.com</span>
+                        <a class="pill" href="#">Portfolio</a>
+                        <a class="pill" href="#">LinkedIn</a>
+                        <a class="pill" href="#">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </head>
+
+        <div class="main-content">
+            <div class="side-bar">
+                <div class="year">
+                    <p><span class="dot"></span><a class="nav-year" href="#">2025</a></p>
+                    <p><span class="dot"></span><a class="nav-year" href="#">2024</a></p>
+                    <p><span class="dot"></span><a class="nav-year" href="#">2023</a></p>
+                    <p><span class="dot"></span><a class="nav-year" href="#">2022</a></p>
+                </div>
+
+                <nav class="nav">
+                    <a href="">About</a>
+                    <a href="">Skills</a>
+                    <a href="">Projects</a>
+                    <a href="">Education</a>
+                </nav>
+            </div>
+
+            <div>
+                <article class="section muted">
+                    <h1>About</h1>
+                    <p class="paragraph">Impact-driven builder of fast, accessible UIs. I care about design tokens, clean semantics, and performance budgets. I enjoy mentoring and teaching front-end fundamentals to help teams move quickly with quality.</p>
+                </article>
+
+                <article class="section card" aria-labelledby="exp-title">
+                    <h2 id="exp-title">Experience</h2>
+
+                    <div class="exp">
+                    <!-- 2025 -->
+                    <div class="job" id="y2025" aria-labelledby="y2025-title">
+                        <div style="display:flex; gap:12px; align-items:baseline; flex-wrap: wrap;">
+                            <div class="role" id="y2025-title">Lead Front-End Engineer</div>
+                            <div class="where">Atlas Systems • Amman</div>
+                            <div class="when">2025</div>
+                        </div>
+
+                        <ul class="muted">
+                            <li>Shipped a design-token pipeline (Style Dictionary) that unified 3 products; reduced CSS drift by
+                            40%.</li>
+                            <li>Migrated legacy CSS to CSS Grid/Flex patterns; cut layout bugs across viewports by ~60%.</li>
+                            <li>Championed performance budgets; improved median LCP from 3.3s → 2.2s on mid-range devices.</li>
+                        </ul>
+                        <p><a href="#top">↑ Back to top</a></p>
+                    </div>
+
+                    <!-- 2024 -->
+                    <div class="job" id="y2024" aria-labelledby="y2024-title">
+                        <div style="display:flex; gap:12px; align-items:baseline; flex-wrap: wrap;">
+                            <div class="role" id="y2024-title">Senior Front-End Developer</div>
+                            <div class="where">Tech Co • Amman</div>
+                            <div class="when">2023 — 2024</div>
+                        </div>
+                        <ul class="muted">
+                            <li>Built an internal component library; trimmed CSS bundle by 30% using tokens and utility classes.
+                            </li>
+                            <li>Led a11y upgrades to WCAG 2.1 AA; authored checklists and example PRs for the team.</li>
+                            <li>Partnered with Design to improve Figma → code handoff; reduced rework and improved consistency.</li>
+                        </ul>
+                        <p><a href="#top">↑ Back to top</a></p>
+                    </div>
+
+                    <!-- 2023 -->
+                    <div class="job" id="y2023" aria-labelledby="y2023-title">
+                        <div style="display:flex; gap:12px; align-items:baseline; flex-wrap: wrap;">
+                            <div class="role" id="y2023-title">Web Designer</div>
+                            <div class="where">Creative Studio • Remote</div>
+                            <div class="when">2020 — 2023</div>
+                        </div>
+                        <ul class="muted">
+                            <li>Prototyped and shipped 12 marketing sites with modern CSS; introduced shared brand tokens.</li>
+                            <li>Delivered semantic HTML/CSS handoffs that accelerated dev sprints by ~20%.</li>
+                        </ul>
+                        <p><a href="#top">↑ Back to top</a></p>
+                    </div>
+
+                    <!-- 2022 -->
+                    <div class="job" id="y2022" aria-labelledby="y2022-title">
+                        <div style="display:flex; gap:12px; align-items:baseline; flex-wrap: wrap;">
+                            <div class="role" id="y2022-title">Volunteer Mentor</div>
+                            <div class="where">Local Coding Club</div>
+                            <div class="when">2022 — Present</div>
+                        </div>
+                        <ul class="muted">
+                            <li>Weekly workshops helping beginners ship their first pages using semantic HTML and modern CSS.</li>
+                            <li>Reviewed student projects; introduced accessible patterns and responsive techniques.</li>
+                        </ul>
+                        <p><a href="#top">↑ Back to top</a></p>
+                    </div>
+                </article>
+
+                <div class="section">
+                    <h1>Skills & Tools</h1>
+                    <div class="capsules">
+                        <span class="capsule">Semantic HTML</span>
+                        <span class="capsule">CSS Grid & Flexbox</span>
+                        <span class="capsule">Accessibility (WCAG)</span>
+                        <span class="capsule">Design Tokens</span>
+                        <span class="capsule">Git & GitHub</span>
+                        <span class="capsule">Figma</span>
+                        <span class="capsule">Chrome DevTools</span>
+                    </div >
+                </div>
+                
+                
+                <div class="section">
+                    <h1>Selected Projects</h1>
+
+                    <div class="cards">
+                        <div class="card">
+                            <div class="card-title">Portfolio Website</div>
+                            <p>Static site scoring 95+ on Lighthouse Performance; optimized fonts & images; CI/CD previews for PRs.</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-title">Design System Demo</div>
+                            <p>Token-based theming with CSS variables; documented components with usage guidelines.</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-title">Perf Budgets Kit</div>
+                            <p>Starter budgets, bundle limits, and checklists to keep teams honest as products scale.</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-title">A11y Audit Toolkit</div>
+                            <p>Keyboard flows, color contrast testing, and heuristics to drive WCAG 2.1 AA improvements.</p>
+                        </div>
+                    </div>
+               
+                </div> 
+                <article id="education" class="section card">
+                    <h2>Education</h2>
+                    <div class="edu-list">
+
+                        <div class="edu-item">
+                            <div class="edu-header">
+                            <h3 class="edu-degree">B.Sc. Computer Science</h3>
+                            <span class="edu-years">2016 — 2020</span>
+                        </div>
+
+                        <div class="edu-institution">University Name</div>
+                            <p class="edu-highlights muted">
+                                Graduated with Honors. Focused on software engineering, data structures, and algorithms.
+                            </p>
+                        </div>
+
+                        <div class="edu-item">
+                            <div class="edu-header">
+                            <h3 class="edu-degree">M.Sc. Information Technology</h3>
+                            <span class="edu-years">2021 — 2023</span>
+                        </div>
+
+                        <div class="edu-institution">Tech Institute</div>
+                            <p class="edu-highlights muted">
+                                Specialized in cloud computing and modern web application development.
+                            </p>
+                        </div>
+
+                        <div class="edu-item">
+                            <div class="edu-header">
+                                <h3 class="edu-degree">Front-End Web Development Certification</h3>
+                                <span class="edu-years">2023</span>
+                            </div>
+
+                            <div class="edu-institution">Online Academy</div>
+                            <p class="edu-highlights muted">Completed intensive bootcamp covering HTML5, CSS3, JavaScript, and React.</p>
+                        </div>
+
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

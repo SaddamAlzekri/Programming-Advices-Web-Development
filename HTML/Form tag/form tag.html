@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Contact Information</h1>
+    <form action="getInfo.html" method="post">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="name">name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">email</label>
+            <input type="email" id="email" name="email">
+
+            <label for="Birthday">Birthday</label>
+            <input type="date" id="Birthday" name="Birthday">
+
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" min="18">
+        </fieldset>
+
+        <fieldset>
+            <legend>Preferences</legend>
+            <label for="male">Male</label>
+            <input type="radio" id="Gender" name="Gender" value="male" checked>
+            <label for="Female">Female</label>
+            <input type="radio" id="Gender" name="Gender" value="female"><br><br>
+            
+            <label for="countries">countries</label>
+            <select name="countries" id="countries">
+                <option value="USA">United state of America</option>
+                <option value="UAE">United Arabic Ematrates</option>
+                <option value="YNM">YEMEN</option>
+            </select>
+
+            <br><br>
+            <label for="chkrememberme">remember me</label>
+            <input type="checkbox" id="chkrememberme" name="chkrememberme">
+        </fieldset>
+
+        <fieldset>
+            <legend>Your Message</legend>
+            <textarea name="Message" id="Message" rows="4"></textarea>
+        </fieldset><br>
+        <button type="submit" align = "center">send</button>
+    </form>
+</body>
+</html>

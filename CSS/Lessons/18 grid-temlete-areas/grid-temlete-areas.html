@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .layout {
+            display: grid;
+            
+            grid-template-areas: 
+            "header header header"
+            "sidebar main ads"
+            "footer footer footer";
+            
+            grid-template-columns: 200px 1fr 150px;
+            grid-template-rows: auto 1fr auto;
+
+            gap: 10px;
+            height: 100vh;
+            padding: 1rem;
+        }
+
+        header {grid-area: header; background-color: aqua; padding: 10px;border-radius: 10px;}
+        .sidebar {grid-area: sidebar; background-color: blueviolet;padding: 10px;border-radius: 10px;}
+        .main {grid-area: main; background-color: cornflowerblue;padding: 10px;border-radius: 10px; overflow: auto;}
+        .ads {grid-area: ads; background-color: darkolivegreen;padding: 10px; border-radius: 10px;}
+        footer {grid-area: footer; background-color: gold;padding: 10px; border-radius: 10px;}
+
+        @media (max-width: 600px)
+        {
+            .layout {
+                display: grid;
+                grid-template-areas: 
+                "header header"
+                "main main"
+                "sidebar sidebar"
+                "footer footer";
+            
+                grid-template-columns: 1fr;
+                grid-template-rows: 70px 1fr auto 70px;
+        }
+        
+        .ads {
+            display: none;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header>Header</header>
+        <aside class="sidebar">Sidebar</aside>
+        <main class="main">Main content</main>
+        <aside class="ads">Ads</aside>
+        <footer>Footer</footer>
+    </div>
+</body>
+</html>

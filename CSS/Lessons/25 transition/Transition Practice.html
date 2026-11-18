@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition practice</title>
+    <style>
+        h1, h2,p {
+            text-align: center;
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 70px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: cadetblue;
+            margin: auto;
+        }
+        .width-Expansion-card {
+            transition-property: width;
+            transition-duration: 2s;
+        }
+        .width-Expansion-card:hover {
+            width: 200px;
+            cursor: pointer;
+        }
+        .Delayed-Background-Change {
+            transition-delay: 0.5s;
+            transition-duration: 5s;
+            transition-property: background-color;
+        }
+        .Delayed-Background-Change:hover {
+            background-color: red;
+            cursor: pointer;
+        }
+        .Easing-Curves {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+        }
+        .Ease {
+            transition-duration: 1.5s;
+
+        }
+        .Ease:hover {
+            transition-timing-function: ease;
+            transform: translatey(-20px);
+            cursor: pointer;
+        }
+        .Line {
+            transition-duration: 1.5s;
+
+        }
+        .Line:hover {
+            transition-timing-function: linear;
+            transform: translatey(-20px);
+            cursor: pointer;
+        }
+        .In-Out {
+            transition-duration: 1.5s;
+
+        }
+        .In-Out:hover {
+            transition-timing-function: ease-in-out;
+            transform: translatey(-20px);
+            cursor: pointer;
+        }
+        .movies {
+            transition:
+            background-color 2s ease-in-out 0.2s,
+            transform  2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .movies:hover {
+      background-color: red;                 /* green fade, delayed   */
+      transform: rotate(20deg) scale(1.2); 
+            cursor: pointer;
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>CSS Transitions – Combined Demo</h1>
+
+    <h2>1) Width Expansion</h2>
+    <div class="width-Expansion-card card">Hover</div>
+    <p>width → 200 pxduration 2 s</p>
+
+    <h2>2) Delayed Background Change</h2>
+    <div class="Delayed-Background-Change card">hover</div>
+    <p>bg-color 5 s dur · 0.5 s delay</p>
+
+    <h1>3) Easing Curves</h1>
+    <section class="Easing-Curves">
+        <div class="card Ease">ease</div>
+        <div class="card Line">linear</div>
+        <div class="card In-Out">in-out</div>
+        <p class="description">ease</p>
+        <p class="description">linear</p>
+        <p class="description">ease-in-out</p>
+    </section>
+
+    <h1>4) Multiple-Property Shorthand</h1>
+    <div class="card movies">Hover</div>
+    <p>bg + transform custom cubic</p>
+
+
+</body>
+</html>

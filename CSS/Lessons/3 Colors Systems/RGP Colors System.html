@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGP Colors System</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(245, 243, 243);
+            color: rgb(8, 8, 8);
+        }
+
+        h1 {
+            color : rgb(250, 5, 5);
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        #personalInfo {
+            background-color: rgb(213, 241, 236);
+            box-shadow: 0 2px 8px;
+            padding: 20px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        #card {
+            padding: 20px;
+            height: 300px;
+            width: 200px;
+            background-color: rgb(213, 241, 236);
+            border-radius: 30px;
+            box-shadow: 0 2px 8px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+        }
+
+        #card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px;
+            cursor: pointer;
+
+        }
+    </style>
+
+</head>
+<body>
+    <h1>RGP Colors System</h1>
+
+    <p id="personalInfo"> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. </span>Deserunt, id cum distinctio molestias incidunt provident minima aperiam dolor fugiat harum suscipit voluptatum corporis earum officiis, nemo nostrum libero eaque qui atque inventore sed. Nostrum porro nesciunt similique odit doloribus aperiam. ipsum, dolor sit amet consectetur adipisicing elit. Aliquid corporis ea, ducimus vel suscipit vitae earum qui libero obcaecati reprehenderit.</p>
+
+    <div id="container">
+        <div id="card">
+            <p>Lorem, ipsum dolor.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae tempore ipsa? ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+
+        <div id="card">
+            <p>Lorem, ipsum dolor.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae tempore ipsa? ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+
+        <div id="card">
+            <p>Lorem, ipsum dolor.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae tempore ipsa? ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
